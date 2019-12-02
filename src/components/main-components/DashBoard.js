@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+import ProjectService from '../../services/ProjectService.js'
 
 function CustomToggle({ children, eventKey, color }) {
   const changeContent = useAccordionToggle(eventKey, () =>
@@ -28,11 +29,51 @@ export default class DashBoard extends React.Component {
   constructor(){
     super();
     this.state = {
+      userId: 1,
       date: new Date(),
+      projects: [],
+      inbox: [],
+      trash: [],
+      upcomingTasks: []
     }
+    this.projectService = new ProjectService(this)
   }
 
   onChange = date => this.setState({ date })
+
+  componentDidMount(){
+    this.projectService.fetchProjects(1)
+  }
+
+  prosInRows = (pros) => {
+    const size = 3
+    const arrayOfArrays = []
+    for (var i = 0; i < pros.length; i += size) {
+      arrayOfArrays.push(pros.slice(i, i + size));
+    }
+    return arrayOfArrays
+  }
+
+  renderRows = () => {
+    return this.prosInRows(this.state.projects).map((row, index) => this.renderRow(row, index))
+  }
+
+  renderRow = (row, index) => (
+    <div className='row mx-auto'>
+      {row.map(project =>
+          <Col sm={4}>
+            <Card key={project.id}>
+              <Card.Header>
+               {project.name}
+              </Card.Header>
+              <Card.Body>
+                {project.description}
+              </Card.Body>
+            </Card>
+          </Col>
+       )}
+    </div>
+  )
 
   render(){
     return(
@@ -60,9 +101,9 @@ export default class DashBoard extends React.Component {
               <Card.Header style={{backgroundColor: '#0099FF', color: "#fff"}}>
                 My Projects <i className="fa fa-fw fa-th-large" style={{ fontSize: '1em', marginLeft: 5}} />
               </Card.Header>
-                <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+              <Card.Body>
+                {this.renderRows()}
+              </Card.Body>
             </Card>
             <br />
             <Card style={{ width: '850px', maxWidth: '100%' }}>

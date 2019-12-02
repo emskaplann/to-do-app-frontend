@@ -59,10 +59,10 @@ export default class DashBoard extends React.Component {
   }
 
   renderRow = (row, index) => (
-    <div className='row mx-auto'>
+    <div className='row mx-auto' key={`row-${index}`}>
       {row.map(project =>
-          <Col sm={4}>
-            <Card key={project.id}>
+          <Col key={`project-${project.id}`} sm={4}>
+            <Card key={`project-${project.id}`}>
               <Card.Header>
                {project.name}
               </Card.Header>

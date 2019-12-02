@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@trendmicro/react-sidenav": "^0.4.5",
+    "bootstrap": "^4.4.1",
+    "mdbreact": "^4.23.0",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-bootstrap-sidebar": "0.0.1",
+    "react-calendar": "^2.19.2",
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0"
   },

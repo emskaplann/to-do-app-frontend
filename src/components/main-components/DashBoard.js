@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Accordion, Row, Col, Card, ListGroup, useAccordionToggle} from 'react-bootstrap'
+import { Container, Accordion, Row, Col, Card, ListGroup, useAccordionToggle } from 'react-bootstrap'
 import Calendar from 'react-calendar'
 import NewProjectModal from '../sub-components/NewProjectModal.js'
 import ProjectService from '../../services/ProjectService.js'
@@ -116,7 +116,7 @@ export default class DashBoard extends React.Component {
               </Card.Body>
             </Card>
             <br />
-            <UpcomingTasks tasks={this.allTasks()} />
+            <UpcomingTasks tasks={this.allTasks().filter(task => !task.is_completed)} />
           </Col>
           <Col sm={3}>
             <Accordion defaultActiveKey="0">

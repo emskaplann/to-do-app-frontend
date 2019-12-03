@@ -43,6 +43,33 @@ export default class Projects extends React.Component {
               <ListGroup.Item style={{border: '1px solid #d3d3d3'}}>Cras justo odio</ListGroup.Item>
             </Card.Body>
           </Card>
+        <Row>
+          <Col sm={3}>
+            <br />
+            <Card>
+              <Card.Header style={{backgroundColor: '#3c2359', color: '#fff'}}>
+                Timer
+              </Card.Header>
+              <Card.Body>
+                <h1>00:04:56</h1>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col sm={9}>
+            <br />
+            <Card>
+              <Card.Header style={{backgroundColor: '#09224f', color: '#fff'}}>
+                Useful Links
+              </Card.Header>
+              <Card.Body>
+                <ListGroup.Item style={{border: '1px solid #d3d3d3'}}>Cras justo odio</ListGroup.Item>
+                <ListGroup.Item style={{border: '1px solid #d3d3d3'}}>Dapibus ac facilisis in</ListGroup.Item>
+                <ListGroup.Item style={{border: '1px solid #d3d3d3'}}>Vestibulum at eros</ListGroup.Item>
+                <ListGroup.Item style={{border: '1px solid #d3d3d3'}}>Cras justo odio</ListGroup.Item>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </Col>
       <Col sm={5}>
         <Card>

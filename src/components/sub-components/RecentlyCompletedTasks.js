@@ -12,7 +12,7 @@ const RecentlyCompletedTasks = ({ tasks }) => {
       </Card.Header>
       {
         completed_tasks.map(task =>
-          <ListGroup.Item key={`task-item-${task.id}`}>task.title</ListGroup.Item>
+          <ListGroup.Item key={`task-item-${task.id}`}>{task.title}</ListGroup.Item>
         )
       }
     </Card>

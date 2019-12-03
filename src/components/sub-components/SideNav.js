@@ -4,17 +4,23 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import DashBoard from '../main-components/DashBoard.js'
 import Projects from '../main-components/Projects.js'
 import Tasks from '../main-components/Tasks.js'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, useParams} from 'react-router-dom'
+import ProjectService from '../../services/ProjectService.js'
 
 
 export default class SideNavPage extends React.Component {
   constructor(){
     super()
-
     this.state = {
-
+        projects: [],
     }
+    this.projectService = new ProjectService(this)
   }
+
+  componentDidMount() {
+    this.projectService.fetchProjects(1)
+  }
+
   render(){
     return(
       <Router>
@@ -58,8 +64,8 @@ export default class SideNavPage extends React.Component {
                   </SideNav.Nav>
               </SideNav>
               <main>
-                  <Route path="/dashboard" exact component={props => <DashBoard />} />
-                  <Route path="/projects" component={props => <Projects />} />
+                  <Route path="/dashboard" exact component={props => <DashBoard projects={this.state.projects}/>} />
+                  <Route path="/projects/:id" component={props => <Projects project={this.state.projects.find(project => project.id === parseInt(useParams().id))}/>} />
                   <Route path="/tasks" component={props => <Tasks />} />
               </main>
           </React.Fragment>

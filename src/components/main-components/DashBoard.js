@@ -2,8 +2,10 @@ import React from 'react'
 import { Container, Accordion, Row, Col, Card, ListGroup, useAccordionToggle } from 'react-bootstrap'
 import Calendar from 'react-calendar'
 import NewProjectModal from '../sub-components/NewProjectModal.js'
-import ProjectService from '../../services/ProjectService.js'
 import UpcomingTasks from '../sub-components/UpcomingTasks.js';
+import RecentlyCompletedTasks from '../sub-components/RecentlyCompletedTasks.js';
+import { Link } from 'react-router-dom'
+
 
 function CustomToggle({ children, eventKey, color }) {
   const changeContent = useAccordionToggle(eventKey, () =>
@@ -33,16 +35,14 @@ export default class DashBoard extends React.Component {
       trash: [],
       upcomingTasks: []
     }
-    this.projectService = new ProjectService(this)
   }
 
   onChange = date => this.setState({ date })
   openModal = () => this.setState({ showNPM: true })
   handleModalClose = () => this.setState({ showNPM: false })
-  allTasks = () => this.state.projects.map(project => project.tasks).flat()
-
-  componentDidMount() {
-    this.projectService.fetchProjects(1)
+  allTasks = () => {
+    console.log(this.props)
+    return this.props.projects.map(project => project.tasks).flat()
   }
 
   prosInRows = (pros) => {
@@ -55,21 +55,25 @@ export default class DashBoard extends React.Component {
   }
 
   renderRows = () => {
-    return this.prosInRows(this.state.projects).map((row, index) => this.renderRow(row, index))
+    return this.prosInRows(this.props.projects).map((row, index) => this.renderRow(row, index))
   }
 
   renderRow = (row, index) => (
     <div className='row mx-auto' key={`row-${index}`} style={{ marginTop: 10 }}>
       {row.map(project =>
         <Col key={`project-${project.id}`} sm={4}>
-          <Card key={`project-${project.id}`}>
-            <Card.Header>
-              {project.name}
-            </Card.Header>
-            <Card.Body>
-              {project.description}
-            </Card.Body>
-          </Card>
+          <Link to={`/projects/${project.id}`}>
+
+            <Card key={`project-${project.id}`}>
+              <Card.Header>
+                {project.name}
+              </Card.Header>
+              <Card.Body>
+                {project.description}
+              </Card.Body>
+            </Card>
+          </Link>
+
         </Col>
       )}
     </div>
@@ -91,7 +95,7 @@ export default class DashBoard extends React.Component {
               value={this.state.date}
             />
             <br />
-            <Card style={{ width: '350px', maxWidth: '100%' }}>
+            {/* <Card style={{ width: '350px', maxWidth: '100%' }}>
               <Card.Header style={{ backgroundColor: '#669900', color: "#fff" }}>
                 Recently Completed Tasks <i className="fa fa-fw fa-check-square-o" style={{ fontSize: '1em', marginLeft: 5 }} />
               </Card.Header>
@@ -99,7 +103,8 @@ export default class DashBoard extends React.Component {
               <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
               <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
               <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            </Card>
+            </Card> */}
+            <RecentlyCompletedTasks tasks={this.allTasks()} />
           </Col>
           <Col sm={6}>
             <Card style={{ width: '850px', maxWidth: '100%', marginTop: 5 }}>

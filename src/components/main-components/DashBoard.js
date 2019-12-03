@@ -33,7 +33,6 @@ export default class DashBoard extends React.Component {
       userId: 1,
       showNPM: false,
       date: new Date(),
-      newProject: {},
       projects: [],
       inbox: [],
       trash: [],
@@ -62,7 +61,7 @@ export default class DashBoard extends React.Component {
   }
 
   renderRow = (row, index) => (
-    <div className='row mx-auto' key={`row-${index}`}>
+    <div className='row mx-auto' key={`row-${index}`} style={{marginTop: 10}}>
       {row.map(project =>
           <Col key={`project-${project.id}`} sm={4}>
             <Card key={`project-${project.id}`}>
@@ -88,7 +87,7 @@ export default class DashBoard extends React.Component {
 
   handleProjectSubmit = (obj) => {
     let newObj = {...obj, userId: this.state.userId, isDeleted: false, isCompleted: false}
-    this.projectService.postProject(newObj)
+    this.setState({showNPM: false}, this.projectService.postProject(newObj))
   }
 
   render(){

@@ -6,8 +6,8 @@ export default class ProjectService {
   fetchProjects = () => {
     fetch(`https://arcane-sands-50858.herokuapp.com/users/${this.component.state.userId}/projects`)
     .then(r => r.json())
-    .then(r => {
-      this.component.setState({projects: r})
+    .then(projects => {
+      this.component.setState({ projects })
     })
   }
 
@@ -20,7 +20,7 @@ export default class ProjectService {
       }, body: JSON.stringify(obj)})
       .then(r => r.json())
       .then(newProject => {
-        this.component.setState({ newProject })
+        this.component.setState({ projects: [...this.component.state.projects, newProject] })
       })
   }
 

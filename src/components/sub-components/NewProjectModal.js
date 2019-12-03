@@ -20,7 +20,7 @@ export default class NewProjectModal extends React.Component {
         date: "",
         description: "I want to this and that.",
         name: "My Cool Project.",
-        priority: "Medium",
+        priority: "medium",
       }
     }
   }
@@ -36,12 +36,6 @@ export default class NewProjectModal extends React.Component {
       project: {...this.state.project, description: description}
     })
   }
-
-  handleDate = date => (
-    this.setState({
-      project: {...this.state.project, date: date}
-    })
-  )
 
   handleChange = date => (
     this.setState({
@@ -85,9 +79,9 @@ export default class NewProjectModal extends React.Component {
                 </Col>
                 <Col sm='10'>
                     <Form.Control as="select" onChange={(event) => this.handleSelectChange(event.target.value)}>
-                      <option value='Low'>Low</option>
-                      <option value='Medium'>Medium</option>
-                      <option value='High'>High</option>
+                      <option value='low'>Low</option>
+                      <option value='medium'>Medium</option>
+                      <option value='high'>High</option>
                     </Form.Control>
                 </Col>
               </Form.Group>
@@ -99,11 +93,8 @@ export default class NewProjectModal extends React.Component {
               </Col>
               <Col sm='10'>
                 <DatePicker
-                  onChange={this.handleChange}
                   selected={this.state.project.date}
                   onChange={this.handleChange}
-                  dateFormat='Pp'
-                  showTimeSelect
                 />
               </Col>
               </Form.Group>

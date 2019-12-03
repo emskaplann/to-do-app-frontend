@@ -1,12 +1,6 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
+import {Container, Accordion, Row, Col, Card, ListGroup, useAccordionToggle} from 'react-bootstrap'
 import Calendar from 'react-calendar'
-import Accordion from 'react-bootstrap/Accordion'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle'
 import NewProjectModal from '../sub-components/NewProjectModal.js'
 import ProjectService from '../../services/ProjectService.js'
 

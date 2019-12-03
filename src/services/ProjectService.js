@@ -6,7 +6,7 @@ export default class ProjectService {
   }
 
   fetchProjects = (userId) => {
-    fetch(`${this.devURL}/users/${userId}/projects`)
+    fetch(`${this.productionURL}/users/${userId}/projects`)
       .then(r => r.json())
       .then(projects => {
         this.component.setState({ projects })
@@ -14,7 +14,7 @@ export default class ProjectService {
   }
 
   postProject = (project) => {
-    fetch(`${this.devURL}/users/${project.userId}/projects`, {
+    fetch(`${this.productionURL}/users/${project.userId}/projects`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

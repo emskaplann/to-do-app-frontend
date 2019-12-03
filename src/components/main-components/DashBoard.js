@@ -121,7 +121,7 @@ export default class DashBoard extends React.Component {
               </Card.Body>
             </Card>
             <br />
-            <UpcomingTasks tasks={this.allTasks().filter(task => !task.is_completed)} />
+            <UpcomingTasks dateFromState={this.state.date} tasks={this.allTasks().filter(task => !task.is_completed)} />
           </Col>
           <Col sm={3}>
             <Accordion defaultActiveKey="0">

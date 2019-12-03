@@ -6,7 +6,7 @@ export default class TagSerivce {
   }
 
   fetchAll(projectId) {
-    fetch(`${this.devURL}/tags`)
+    fetch(`${this.productionURL}/tags`)
       .then(response => response.json())
       .then(tags => this.component.setState({ tags }))
   }

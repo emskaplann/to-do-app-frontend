@@ -1,16 +1,15 @@
-import React from 'react';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import DashBoard from '../main-components/DashBoard.js';
-import Projects from '../main-components/Projects.js';
+import React from 'react'
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
+import '@trendmicro/react-sidenav/dist/react-sidenav.css'
+import DashBoard from '../main-components/DashBoard.js'
+import Projects from '../main-components/Projects.js'
 import Tasks from '../main-components/Tasks.js'
-import {BrowserRouter as Router,
-        Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 
 export default class SideNavPage extends React.Component {
   constructor(){
-    super();
+    super()
 
     this.state = {
 
@@ -24,9 +23,9 @@ export default class SideNavPage extends React.Component {
               <SideNav
                   style={{position: 'fixed'}}
                   onSelect={(selected) => {
-                      const to = '/' + selected;
+                      const to = '/' + selected
                       if (location.pathname !== to) {
-                          history.push(to);
+                          history.push(to)
                       }
                   }}
               >

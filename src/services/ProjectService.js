@@ -11,13 +11,13 @@ export default class ProjectService {
     })
   }
 
-  postProject = (obj) => {
-    fetch(`https://arcane-sands-50858.herokuapp.com/users/${obj.userId}/projects`, {
+  postProject = (project) => {
+    fetch(`https://arcane-sands-50858.herokuapp.com/users/${project.userId}/projects`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
-      }, body: JSON.stringify(obj)})
+      }, body: JSON.stringify(project)})
       .then(r => r.json())
       .then(newProject => {
         this.component.setState({ projects: [...this.component.state.projects, newProject] })

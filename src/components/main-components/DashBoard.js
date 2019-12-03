@@ -40,10 +40,7 @@ export default class DashBoard extends React.Component {
   onChange = date => this.setState({ date })
   openModal = () => this.setState({ showNPM: true })
   handleModalClose = () => this.setState({ showNPM: false })
-  allTasks = () => {
-    console.log(this.props)
-    return this.props.projects.map(project => project.tasks).flat()
-  }
+  allTasks = () => this.props.projects.map(project => project.tasks).flat()
 
   prosInRows = (pros) => {
     const size = 3

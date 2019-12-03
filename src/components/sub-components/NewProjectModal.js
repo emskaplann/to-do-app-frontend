@@ -1,9 +1,5 @@
 import React from 'react'
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap'
-// import Button from 'react-bootstrap/Button'
-// import Form from 'react-bootstrap/Form'
-// import Col from 'react-bootstrap/Col'
-// import Row from 'react-bootstrap/Row'
 import DatePicker from "react-datepicker"
 
 import "react-datepicker/dist/react-datepicker.css"

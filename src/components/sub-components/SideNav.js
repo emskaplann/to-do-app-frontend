@@ -13,6 +13,7 @@ export default class SideNavPage extends React.Component {
     super()
     this.state = {
       projects: [],
+      allTasks: [],
     }
     this.projectService = new ProjectService(this)
   }
@@ -20,6 +21,9 @@ export default class SideNavPage extends React.Component {
   componentDidMount() {
     this.projectService.fetchProjects(1)
   }
+
+  handleTaskSubmit = obj => this.projectService.postTask(obj)
+
 
   render() {
     return (
@@ -45,7 +49,7 @@ export default class SideNavPage extends React.Component {
                     DashBoard
                   </NavText>
                 </NavItem>
-                <NavItem eventKey="projects">
+                <NavItem eventKey="projects/1">
                   <NavIcon>
                     <i className="fa fa-fw fa-list-alt" style={{ fontSize: '1.75em' }} />
                   </NavIcon>
@@ -66,7 +70,7 @@ export default class SideNavPage extends React.Component {
             <main>
               <Route path="/dashboard" exact component={props => <DashBoard projects={this.state.projects} />} />
               <Route path="/projects/:id" component={props => <Projects project={this.state.projects.find(project => project.id === parseInt(useParams().id))} />} />
-              <Route path="/tasks" component={props => <Tasks />} />
+              <Route path="/tasks" component={props => <Tasks tasks={this.state.allTasks} projects={this.state.projects} handleTaskSubmit={this.handleTaskSubmit}/>} />
             </main>
           </React.Fragment>
         )}

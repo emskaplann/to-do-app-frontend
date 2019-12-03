@@ -9,6 +9,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle'
 import NewProjectModal from '../sub-components/NewProjectModal.js'
 import ProjectService from '../../services/ProjectService.js'
+import UpcomingTasks from '../sub-components/UpcomingTasks.js';
 
 function CustomToggle({ children, eventKey, color }) {
   const changeContent = useAccordionToggle(eventKey, () =>
@@ -44,6 +45,7 @@ export default class DashBoard extends React.Component {
   onChange = date => this.setState({ date })
   openModal = () => this.setState({ showNPM: true })
   handleModalClose = () => this.setState({ showNPM: false })
+  allTasks = () => this.state.projects.map(project => project.tasks).flat()
 
   componentDidMount() {
     this.projectService.fetchProjects(1)
@@ -120,15 +122,7 @@ export default class DashBoard extends React.Component {
               </Card.Body>
             </Card>
             <br />
-            <Card style={{ width: '850px', maxWidth: '100%' }}>
-              <Card.Header style={{ backgroundColor: '#0033CC', color: "#fff" }}>
-                Upcoming Tasks <i className="fa fa-fw fa-caret-up" style={{ fontSize: '1em', marginLeft: 5 }} />
-              </Card.Header>
-              <ListGroup.Item>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-              <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            </Card>
+            <UpcomingTasks tasks={this.allTasks()} />
           </Col>
           <Col sm={3}>
             <Accordion defaultActiveKey="0">

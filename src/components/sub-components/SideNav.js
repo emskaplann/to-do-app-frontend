@@ -22,6 +22,7 @@ export default class SideNavPage extends React.Component {
       <Route render={({ location, history }) => (
           <React.Fragment>
               <SideNav
+                  style={{position: 'fixed'}}
                   onSelect={(selected) => {
                       const to = '/' + selected;
                       if (location.pathname !== to) {

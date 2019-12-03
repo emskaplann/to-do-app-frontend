@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+import NewProjectModal from '../sub-components/NewProjectModal.js'
 import ProjectService from '../../services/ProjectService.js'
 
 function CustomToggle({ children, eventKey, color }) {
@@ -30,7 +31,9 @@ export default class DashBoard extends React.Component {
     super();
     this.state = {
       userId: 1,
+      showNPM: false,
       date: new Date(),
+      newProject: {},
       projects: [],
       inbox: [],
       trash: [],
@@ -75,9 +78,23 @@ export default class DashBoard extends React.Component {
     </div>
   )
 
+  openModal = () => (
+    this.setState({showNPM: true})
+  )
+
+  handleModalClose = () => {
+    this.setState({showNPM: false})
+  }
+
+  handleProjectSubmit = (obj) => {
+    let newObj = {...obj, userId: this.state.userId, isDeleted: false, isCompleted: false}
+    this.projectService.postProject(newObj)
+  }
+
   render(){
     return(
       <Container fluid>
+        <NewProjectModal handleProjectSubmit={this.handleProjectSubmit} show={this.state.showNPM} handleModalClose={this.handleModalClose} />
         <Row>
           <Col sm={3}>
             <Calendar
@@ -87,7 +104,7 @@ export default class DashBoard extends React.Component {
           <br />
           <Card style={{ width: '350px', maxWidth: '100%' }}>
               <Card.Header style={{backgroundColor: '#669900', color: "#fff"}}>
-                Recently Completed Tasks <i className="fa fa-fw fa-check-square-o" style={{ fontSize: '1em', marginLeft: 5}} />
+                  Recently Completed Tasks <i className="fa fa-fw fa-check-square-o" style={{ fontSize: '1em', marginLeft: 5}} />
               </Card.Header>
               <ListGroup.Item>Cras justo odio</ListGroup.Item>
               <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
@@ -96,10 +113,14 @@ export default class DashBoard extends React.Component {
             </Card>
           </Col>
           <Col sm={6}>
-            <br />
-            <Card style={{ width: '850px', maxWidth: '100%' }}>
+            <Card style={{ width: '850px', maxWidth: '100%', marginTop: 5 }}>
               <Card.Header style={{backgroundColor: '#0099FF', color: "#fff"}}>
+              <div className='float-left'>
                 My Projects <i className="fa fa-fw fa-th-large" style={{ fontSize: '1em', marginLeft: 5}} />
+              </div>
+              <div className='float-right' onClick={() => this.openModal()}>
+                <strong>New</strong><i className="fa fa-fw fa-plus-square" style={{ fontSize: '1em', marginLeft: 5}} />
+              </div>
               </Card.Header>
               <Card.Body>
                 {this.renderRows()}
@@ -131,6 +152,13 @@ export default class DashBoard extends React.Component {
               <Accordion.Collapse eventkey="1">
                 <ListGroup.Item>Trash HERE!</ListGroup.Item>
               </Accordion.Collapse>
+                <Card.Header style={{backgroundColor: '#990033', color: '#fff'}}>
+                  Upcoming Deadlines <i className="fa fa-fw fa-hourglass-end" style={{ fontSize: '1em', marginLeft: 5}} />
+                </Card.Header>
+                  <ListGroup.Item>Deadlines 1</ListGroup.Item>
+                  <ListGroup.Item>Deadlines 2</ListGroup.Item>
+                  <ListGroup.Item>Deadlines 3</ListGroup.Item>
+                  <ListGroup.Item>Deadlines 4</ListGroup.Item>
             </Card>
           </Accordion>
           </Col>

@@ -12,9 +12,8 @@ class AllTasks extends React.Component {
       task: {id: 1},
       checklists: [],
     }
-    this.checklistService = new ChecklistService(this)
+    this.ChecklistService = new ChecklistService(this)
   }
-
 
   closeModal = () => this.setState({isModalHidden: true})
 
@@ -26,14 +25,14 @@ class AllTasks extends React.Component {
   }
 
   openModal = (task) => {
-    this.checklistService.fetchChecklists(task.id)
+    this.ChecklistService.fetchChecklists(task.id)
     this.setState({isModalHidden: false, task: task})
   }
 
   render(){
     const { title, tasks, openModal, style } = this.props
     return(
-      <Card className='mb-2'>
+      <Card className='mb-2' style={{width: '850px'}}>
         <TaskModal task={this.state.task} show={!this.state.isModalHidden} checklists={this.state.checklists} closeModal={this.closeModal}/>
         <Card.Header style={style}>
           <div className="float-left">

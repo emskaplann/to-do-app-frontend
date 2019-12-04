@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Form, Col, Row, Accordion, ListGroup, useAccordionToggle } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import Checklist from './Checklist.js'
 
 export default class TaskModal extends React.Component {
@@ -16,7 +16,7 @@ export default class TaskModal extends React.Component {
           </div>
         </Modal.Header>
           <Modal.Body>
-            { this.props.checklists.map((checklist, idx) => <Checklist checklist={checklist} key={checklist.id} />) }
+            { this.props.checklists.map(checklist => <Checklist checklist={checklist} key={checklist.id} />) }
           </Modal.Body>
       </Modal>
     )

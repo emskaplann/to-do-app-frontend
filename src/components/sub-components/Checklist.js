@@ -1,5 +1,7 @@
 import React from 'react'
-import { Modal, Card, ListGroup, useAccordionToggle } from 'react-bootstrap'
+import { Card, ListGroup } from 'react-bootstrap'
+import ItemService from '../../services/ItemService.js'
+
 
 export default class Checklist extends React.Component {
   constructor(){
@@ -7,6 +9,11 @@ export default class Checklist extends React.Component {
     this.state = {
         showItems: false
       }
+      this.ItemService = new ItemService(this)
+    }
+
+    completeItem = (itemId) => {
+      this.ItemService.completeItem(itemId)
     }
 
     renderItems = () => {
@@ -19,8 +26,8 @@ export default class Checklist extends React.Component {
                 <div className='float-left'>
                   {item.text}
                 </div>
-                <div className='float-right' onClick={() => console.log(item.id + ' ' + this.props.checklist.id)}>
-                { !item.is_completed ? <i className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: 'silver'}} /> : <i className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: 'green'}} />}
+                <div className='float-right' onClick={() => this.completeItem(item.id)}>
+                  <i className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: !item.is_completed? 'silver' : 'green'}} />
                 </div>
                 <br />
               </ListGroup.Item>

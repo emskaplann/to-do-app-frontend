@@ -1,11 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, ListGroup, Card } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import Calendar from 'react-calendar'
 import UpcomingTasks from '../sub-components/UpcomingTasks.js'
 import RecentlyCompletedTasks from '../sub-components/RecentlyCompletedTasks.js'
 import AllTasks from '../sub-components/AllTasks.js'
 import NewTaskModal from '../sub-components/NewTaskModal.js'
-import ProjectService from '../../services/ProjectService.js'
 
 
 

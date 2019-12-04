@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Card, ListGroup } from 'react-bootstrap/'
 import NoteService from '../../services/NoteService';
-import { NotesModal } from '../sub-components/NotesModal';
-import { Modal, Button, Form, Col, Row } from 'react-bootstrap'
+import { Button, Form, Col, Row } from 'react-bootstrap'
 
 class NotesCard extends Component {
 
@@ -43,7 +42,7 @@ class NotesCard extends Component {
   )
 
   render() {
-    const { project, className, openModal } = this.props
+    const { className } = this.props
     return (
       <Card className={className}>
         {/* <NotesModal show={this.state.isModalHidden} closeModal={this.openOrCloseModal} handleSubmit={this.handleSubmit} /> */}

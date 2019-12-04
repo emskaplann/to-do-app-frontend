@@ -1,11 +1,8 @@
 import React from 'react';
-import { Container, Col, Row, Card, ListGroup } from 'react-bootstrap/';
+import { Container, Col, Row } from 'react-bootstrap/';
 import TagSerivce from '../../services/TagService';
-import TagComponent from '../sub-components/TagComponent';
 import ProjectTitleComponent from '../sub-components/ProjectTitleComponent';
 import NotesCard from '../sub-components/NotesCard';
-import { TaskCard } from '../sub-components/TaskCard';
-import { NotesModal } from '../sub-components/NotesModal';
 import AllTasks from '../sub-components/AllTasks'
 import NewTaskModal from '../sub-components/NewTaskModal.js'
 

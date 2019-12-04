@@ -3,7 +3,7 @@ import { Card, ListGroup } from 'react-bootstrap'
 
 const getSpanText = (text, completeTask, task) => {
   if (text === 'Due Today') {
-    return <span className='flex-fill text-right'>{text}<i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ color: '#d3d3d3'}} /></span>
+    return <span className='flex-fill text-right'>{text}<i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ color: '#d3d3d3' }} /></span>
   }
   return <span className='flex-fill text-right'><i style={{ color: "red" }}>{text}</i><i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: '#d3d3d3'}} /></span>
 }
@@ -24,12 +24,13 @@ const UpcomingTasks = ({ tasks, dateFromState, completeTask }) => {
           Upcoming Tasks <i className="fa fa-fw fa-caret-up" style={{ fontSize: '1em', marginLeft: 5 }} />
         </Card.Header>
         {upcomingTasks.map(task => {
-          return(
-          <ListGroup.Item className='d-flex' key={`list-group-item-${task.id}`}>
+          return (
+            <ListGroup.Item className='d-flex' key={`list-group-item-${task.id}`}>
               {task.title}
               {getSpanText(task.spanText, completeTask, task)}
-          </ListGroup.Item>)}
-          )}
+            </ListGroup.Item>)
+        }
+        )}
       </Card>
     </div>
   )

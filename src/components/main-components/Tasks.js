@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col, ListGroup, Card} from 'react-bootstrap'
+import { Container, Row, Col, ListGroup, Card } from 'react-bootstrap'
 import Calendar from 'react-calendar'
 import UpcomingTasks from '../sub-components/UpcomingTasks.js'
 import RecentlyCompletedTasks from '../sub-components/RecentlyCompletedTasks.js'
@@ -10,7 +10,7 @@ import ProjectService from '../../services/ProjectService.js'
 
 
 export default class Tasks extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       date: new Date(),
@@ -18,14 +18,13 @@ export default class Tasks extends React.Component {
     }
   }
 
-  openOrCloseModal = () => this.setState({showNTM: !this.state.showNTM})
+  openOrCloseModal = () => this.setState({ showNTM: !this.state.showNTM })
   onChange = date => this.setState({ date })
 
-  render(){
-    console.log(this.props)
-    return(
+  render() {
+    return (
       <Container fluid>
-        <NewTaskModal show={this.state.showNTM} closeModal={this.openOrCloseModal} projects={this.props.projects} handleTaskSubmit={this.props.handleTaskSubmit}/>
+        <NewTaskModal show={this.state.showNTM} closeModal={this.openOrCloseModal} projects={this.props.projects} handleTaskSubmit={this.props.handleTaskSubmit} />
         <Row>
           <Col sm={6}>
             <UpcomingTasks dateFromState={this.state.date} tasks={this.props.tasks.filter(task => !task.is_completed)} />

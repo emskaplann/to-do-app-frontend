@@ -1,29 +1,40 @@
 import React, { Component } from 'react'
 import { Card, ListGroup } from 'react-bootstrap/'
 import NoteService from '../../services/NoteService';
+import { NotesModal } from '../sub-components/NotesModal';
 
 class NotesCard extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      isModalHidden: false,
       notes: []
     }
     this.noteService = new NoteService(this)
   }
 
-  componentDidMount() {
-    console.log(this.props.project);
+  handleSubmit = (note) => {
+    this.noteService.createNote(note, this.props.project.id)
+    this.openOrCloseModal()
+  }
 
+  openOrCloseModal = () => this.setState({ isModalHidden: !this.state.isModalHidden })
+
+  componentDidMount() {
     this.noteService.fetchNotesForProject(this.props.project.id)
   }
 
   render() {
-    const { project, className } = this.props
+    const { project, className, openModal } = this.props
     return (
       <Card className={className}>
+        <NotesModal show={this.state.isModalHidden} closeModal={this.openOrCloseModal} handleSubmit={this.handleSubmit} />
         <Card.Header style={{ backgroundColor: '#990033', color: '#fff' }}>
           Notes <i className="fa fa-fw fa-pencil-square-o" style={{ fontSize: '1em', marginLeft: 5 }} />
+          <div className="float-right" onClick={this.openOrCloseModal}>
+            <strong>New</strong><i className="fa fa-fw fa-plus-square" style={{ fontSize: '1em', marginLeft: 5 }} />
+          </div>
         </Card.Header>
         <Card.Body>
           {this.state.notes.map(note => <ListGroup.Item key={`note-item-${note.id}`} style={{ border: '1px solid #d3d3d3' }}>{note.text}</ListGroup.Item>)}

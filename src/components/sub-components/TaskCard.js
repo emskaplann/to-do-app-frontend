@@ -24,7 +24,7 @@ export class TaskCard extends Component {
         </Card.Header>
         <Card.Body>
           {this.state.tasks.map(task => (
-            <ListGroup.Item style={{ border: '1px solid #d3d3d3' }}>{task.title}</ListGroup.Item>
+            <ListGroup.Item key={`task-item${task.id}`}style={{ border: '1px solid #d3d3d3' }}>{task.title}</ListGroup.Item>
           ))}
         </Card.Body>
       </Card>

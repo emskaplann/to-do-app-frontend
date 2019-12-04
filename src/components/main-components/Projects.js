@@ -5,6 +5,7 @@ import TagComponent from '../sub-components/TagComponent';
 import ProjectTitleComponent from '../sub-components/ProjectTitleComponent';
 import NotesCard from '../sub-components/NotesCard';
 import { TaskCard } from '../sub-components/TaskCard';
+import { NotesModal } from '../sub-components/NotesModal';
 
 export default class Projects extends React.Component {
   constructor() {
@@ -27,7 +28,7 @@ export default class Projects extends React.Component {
         <Row>
           <Col sm={7}>
             <ProjectTitleComponent project={project} className='mb-3' />
-            <NotesCard className='mb-3' project={project} />
+            <NotesCard className='mb-3' project={project} openModal={this.openOrCloseModal} />
             <Row>
               <Col sm={3}>
                 <br />

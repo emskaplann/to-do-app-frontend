@@ -11,6 +11,24 @@ class NoteService {
       .then(response => response.json())
       .then(notes => this.component.setState({ notes }))
   }
+
+  createNote = (note, projectId) => {
+    fetch(`${this.workingURL}/projects/${projectId}/notes`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(note),
+      method: 'POST'
+    })
+      .then(response => response.json())
+      .then(note => {
+        console.log(note)
+        this.component.setState({
+          notes: [...this.component.state.notes, note]
+        })
+      })
+  }
 }
 
 export default NoteService

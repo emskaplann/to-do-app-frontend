@@ -9,17 +9,11 @@ const getSpanText = (text) => {
 }
 
 const UpcomingTasks = ({ tasks, dateFromState }) => {
-  // console.log(dateFromState)
-  // console.log(dateFromState.setHours(0, 0, 0, 0))
-  // const todaysDate = new Date().setHours(0, 0, 0, 0)
   let upcomingTasks = tasks.filter(task => new Date(task.deadline).valueOf() <= dateFromState.setHours(0, 0, 0, 0).valueOf())
   upcomingTasks = upcomingTasks.map(task => {
-    console.log(new Date(task.deadline))
-    console.log(dateFromState)
     task['spanText'] = new Date(task.deadline).setHours(0, 0, 0, 0).valueOf() === dateFromState.setHours(0, 0, 0, 0).valueOf() ? 'Due Today' : 'Past Due'
     return task
   })
-  console.log(upcomingTasks)
   return (
     <div>
       <Card style={{ width: '850px', maxWidth: '100%' }}>

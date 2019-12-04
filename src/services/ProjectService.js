@@ -37,7 +37,16 @@ export default class ProjectService {
       }, body: JSON.stringify(task)
     })
     .then(r => r.json())
-    .then(newTask => this.component.setState({ allTasks: [...this.component.state.allTasks, newTask]}))
+    .then(newTask => {
+      const project = this.component.state.projects.find(project => project.id === newTask.project_id)
+      const projectCopy = Object.assign({}, project)
+      projectCopy.tasks = [...projectCopy.tasks, newTask]
+      const newProjects = this.component.state.projects.map(project => project.id === projectCopy.id ? projectCopy : project)
+      this.component.setState({
+        projects: newProjects,
+        allTasks: newProjects.map(project => project.tasks).flat()
+      })
+    })
   }
 
 }

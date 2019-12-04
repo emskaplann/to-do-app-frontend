@@ -46,7 +46,7 @@ export default class NewProjectModal extends React.Component {
               </Form.Label>
               <Col sm="10">
                 <Form.Control as="select" onChange={(event) => this.handleProjectSelect(event.target.value)} defaultValue={this.state.task.projectId}>
-                  {this.props.projects.map(project => <option value={project.id}>{project.name}</option>)}
+                  {this.props.projects.map(project => <option key={project.id} value={project.id}>{project.name}</option>)}
                 </Form.Control>
               </Col>
             </Form.Group>

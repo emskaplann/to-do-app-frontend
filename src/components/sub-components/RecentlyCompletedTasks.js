@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap'
 
-const RecentlyCompletedTasks = ({ tasks }) => {
+const RecentlyCompletedTasks = ({ tasks, completeTask }) => {
   let todaysDate = new Date()
   todaysDate.setDate(todaysDate.getDate() - 7)
   const completed_tasks = tasks.filter(task => task.is_completed && new Date(task.deadline).valueOf() > todaysDate.setHours(0, 0, 0, 0).valueOf())
@@ -12,7 +12,9 @@ const RecentlyCompletedTasks = ({ tasks }) => {
       </Card.Header>
       {
         completed_tasks.map(task =>
-          <ListGroup.Item key={`task-item-${task.id}`}>{task.title}</ListGroup.Item>
+          <ListGroup.Item key={`task-item-${task.id}`}>
+              {task.title}
+          </ListGroup.Item>
         )
       }
     </Card>

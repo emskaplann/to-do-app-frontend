@@ -5,6 +5,7 @@ import NewProjectModal from '../sub-components/NewProjectModal.js'
 import UpcomingTasks from '../sub-components/UpcomingTasks.js';
 import RecentlyCompletedTasks from '../sub-components/RecentlyCompletedTasks.js';
 import { Link } from 'react-router-dom'
+import TaskService from '../../services/TaskService.js'
 
 
 function CustomToggle({ children, eventKey, color }) {
@@ -35,6 +36,7 @@ export default class DashBoard extends React.Component {
       trash: [],
       upcomingTasks: []
     }
+    // this.props.taskService = new TaskService(this)
   }
 
   onChange = date => this.setState({ date })
@@ -81,6 +83,8 @@ export default class DashBoard extends React.Component {
     this.setState({ showNPM: false }, this.projectService.postProject(newObj))
   }
 
+  completeTask = (taskId) => this.props.taskService.completeTask(taskId)
+
   render() {
     return (
       <Container fluid>
@@ -92,16 +96,7 @@ export default class DashBoard extends React.Component {
               value={this.state.date}
             />
             <br />
-            {/* <Card style={{ width: '350px', maxWidth: '100%' }}>
-              <Card.Header style={{ backgroundColor: '#669900', color: "#fff" }}>
-                Recently Completed Tasks <i className="fa fa-fw fa-check-square-o" style={{ fontSize: '1em', marginLeft: 5 }} />
-              </Card.Header>
-              <ListGroup.Item>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-              <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            </Card> */}
-            <RecentlyCompletedTasks tasks={this.allTasks()} />
+            <RecentlyCompletedTasks tasks={this.allTasks()} completeTask={this.completeTask} />
           </Col>
           <Col sm={6}>
             <Card style={{ width: '850px', maxWidth: '100%', marginTop: 5 }}>
@@ -118,7 +113,7 @@ export default class DashBoard extends React.Component {
               </Card.Body>
             </Card>
             <br />
-            <UpcomingTasks dateFromState={this.state.date} tasks={this.allTasks().filter(task => !task.is_completed)} />
+            <UpcomingTasks dateFromState={this.state.date} tasks={this.allTasks().filter(task => !task.is_completed)} completeTask={this.completeTask} />
           </Col>
           <Col sm={3}>
             <Accordion defaultActiveKey="0">

@@ -28,6 +28,7 @@ export default class SideNavPage extends React.Component {
   isActive = (location, pathName) => location.pathname.includes(pathName) ? true : false
 
   render() {
+    const { authProps } = this.props
     return (
       <Router>
         <Route render={({ location, history }) => (
@@ -70,9 +71,9 @@ export default class SideNavPage extends React.Component {
               </SideNav.Nav>
             </SideNav>
             <main>
-              <Route path="/dashboard" exact component={props => <DashBoard taskService={this.taskService} projects={this.state.projects} />} />
-              <Route path="/projects/:id" component={props => <Projects project={this.state.projects.find(project => project.id === parseInt(useParams().id))} />} />
-              <Route path="/tasks" component={props => <Tasks tasks={this.state.allTasks} projects={this.state.projects} handleTaskSubmit={this.handleTaskSubmit} />} />
+              <Route path="/dashboard" exact component={props => <DashBoard taskService={this.taskService} projects={this.state.projects} authProps={authProps} />} />
+              <Route path="/projects/:id" component={props => <Projects project={this.state.projects.find(project => project.id === parseInt(useParams().id))} authProps={authProps} />} />
+              <Route path="/tasks" component={props => <Tasks tasks={this.state.allTasks} projects={this.state.projects} handleTaskSubmit={this.handleTaskSubmit} />} authProps={authProps} />
             </main>
           </React.Fragment>
         )}

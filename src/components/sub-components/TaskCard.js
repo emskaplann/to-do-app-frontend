@@ -16,7 +16,7 @@ export class TaskCard extends Component {
     this.taskSerivce.fetchAllTasksFor(this.props.project.id)
   }
   render() {
-    const { project, className } = this.props
+    const { className } = this.props
     return (
       <Card className={className}>
         <Card.Header style={{ backgroundColor: '#0033CC', color: "#fff" }}>

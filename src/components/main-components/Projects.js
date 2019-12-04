@@ -1,11 +1,8 @@
 import React from 'react';
-import { Container, Col, Row, Card, ListGroup } from 'react-bootstrap/';
+import { Container, Col, Row } from 'react-bootstrap/';
 import TagSerivce from '../../services/TagService';
-import TagComponent from '../sub-components/TagComponent';
 import ProjectTitleComponent from '../sub-components/ProjectTitleComponent';
 import NotesCard from '../sub-components/NotesCard';
-import { TaskCard } from '../sub-components/TaskCard';
-import { NotesModal } from '../sub-components/NotesModal';
 import AllTasks from '../sub-components/AllTasks'
 import NewTaskModal from '../sub-components/NewTaskModal.js'
 
@@ -30,7 +27,7 @@ export default class Projects extends React.Component {
     if (!project) return null
     return (
       <Container fluid>
-        <NewTaskModal show={this.state.showNTM} closeModal={this.openOrCloseModal} project={this.props.project} handleTaskSubmit={this.handleTaskSubmit} />
+        <NewTaskModal show={this.state.showNTM} closeModal={this.openOrCloseModal} project={this.props.project} handleTaskSubmit={this.props.handleTaskSubmit} />
         <Row>
           <Col sm={7}>
             <ProjectTitleComponent project={project} className='mb-3' />

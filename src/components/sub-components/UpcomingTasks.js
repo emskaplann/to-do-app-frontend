@@ -3,9 +3,9 @@ import { Card, ListGroup } from 'react-bootstrap'
 
 const getSpanText = (text, completeTask, task) => {
   if (text === 'Due Today') {
-    return <span className='flex-fill text-right'>{text}<i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ color: '#d3d3d3' }} /></span>
+    return <span className='flex-fill text-right'>{text}<i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ fontSize: '1.5em',color: '#d3d3d3', marginLeft: 3 }} /></span>
   }
-  return <span className='flex-fill text-right'><i style={{ color: "red" }}>{text}</i><i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: '#d3d3d3'}} /></span>
+  return <span className='flex-fill text-right'><i style={{ color: "red" }}>{text}</i><i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: '#d3d3d3', marginLeft: 3}} /></span>
 }
 
 const UpcomingTasks = ({ tasks, dateFromState, completeTask }) => {

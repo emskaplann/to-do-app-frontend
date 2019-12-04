@@ -5,7 +5,6 @@ import NewProjectModal from '../sub-components/NewProjectModal.js'
 import UpcomingTasks from '../sub-components/UpcomingTasks.js';
 import RecentlyCompletedTasks from '../sub-components/RecentlyCompletedTasks.js';
 import { Link } from 'react-router-dom'
-import TaskService from '../../services/TaskService.js'
 
 
 function CustomToggle({ children, eventKey, color }) {

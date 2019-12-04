@@ -30,7 +30,7 @@ export default class Projects extends React.Component {
     if (!project) return null
     return (
       <Container fluid>
-        <NewTaskModal show={this.state.showNTM} closeModal={this.openOrCloseModal} project={this.props.project} handleTaskSubmit={this.handleTaskSubmit} />
+        <NewTaskModal show={this.state.showNTM} closeModal={this.openOrCloseModal} project={this.props.project} handleTaskSubmit={this.props.handleTaskSubmit} />
         <Row>
           <Col sm={7}>
             <ProjectTitleComponent project={project} className='mb-3' />

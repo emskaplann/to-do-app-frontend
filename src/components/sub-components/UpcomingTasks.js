@@ -19,7 +19,7 @@ const UpcomingTasks = ({ tasks, dateFromState, completeTask }) => {
   })
   return (
     <div>
-      <Card style={{ width: '850px', maxWidth: '100%' }}>
+      <Card style={{ width: '900px', maxWidth: '100%' }}>
         <Card.Header style={{ backgroundColor: '#0033CC', color: "#fff" }}>
           Upcoming Tasks <i className="fa fa-fw fa-caret-up" style={{ fontSize: '1em', marginLeft: 5 }} />
         </Card.Header>

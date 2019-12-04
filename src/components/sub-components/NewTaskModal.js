@@ -7,7 +7,6 @@ import "react-datepicker/dist/react-datepicker.css"
 
 export default class NewProjectModal extends React.Component {
   state = {
-    show: this.props.show,
     date: "",
     task: {
       deadline: "",
@@ -19,7 +18,10 @@ export default class NewProjectModal extends React.Component {
   handleTitle = name => this.setState({ task: { ...this.state.task, title: name } })
   handleProjectSelect = projectId => this.setState({ task: { ...this.state.task, projectId: projectId } })
   handleChange = date => {
-    const dateString = date.toUTCString()
+    let dateString = ""
+    if(date !== null){
+      dateString = date.toUTCString()
+    }
     this.setState({ date: date, task: { ...this.state.task, deadline: dateString } })
   }
   handleSelectChange = priority => this.setState({ task: { ...this.state.task, priority: priority } })

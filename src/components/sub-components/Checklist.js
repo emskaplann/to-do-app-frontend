@@ -1,7 +1,6 @@
 import React from 'react'
-import { Card, ListGroup } from 'react-bootstrap'
-import ItemService from '../../services/ItemService.js'
-
+import { Card } from 'react-bootstrap'
+import SingleItem from './SingleItem.js'
 
 export default class Checklist extends React.Component {
   constructor(){
@@ -9,34 +8,9 @@ export default class Checklist extends React.Component {
     this.state = {
         showItems: false
       }
-      this.ItemService = new ItemService(this)
     }
 
-    completeItem = (itemId) => {
-      this.ItemService.completeItem(itemId)
-    }
-
-    renderItems = () => {
-      return(
-        <div>
-          {this.props.checklist.items.map(item => {
-            return(
-            <Card.Body key={`checklist-item${item.id}`}>
-              <ListGroup.Item key={item.id}>
-                <div className='float-left'>
-                  {item.text}
-                </div>
-                <div className='float-right' onClick={() => this.completeItem(item.id)}>
-                  <i className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: !item.is_completed? 'silver' : 'green'}} />
-                </div>
-                <br />
-              </ListGroup.Item>
-            </Card.Body>
-            )
-          })}
-        </div>
-      )
-    }
+    renderItems = () => this.props.checklist.items.map(item => <SingleItem key={item.id} item={item}/>)
 
     render(){
       return(

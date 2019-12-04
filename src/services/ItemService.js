@@ -3,7 +3,7 @@ export default class ItemService {
     this.component = component
   }
 
-  completeItem = itemId => {
+  completeItem = (itemId, bool) => {
     fetch(`https://arcane-sands-50858.herokuapp.com/items/${itemId}`, {
       method: 'PATCH',
       headers: {
@@ -11,14 +11,13 @@ export default class ItemService {
         Accept: "application/json"
       }, body: JSON.stringify({
         item: {
-          text: "edited",
-          is_completed: "true"
+          is_completed: bool
         }
       })
     })
     .then(r => r.json())
     .then(editedItem => {
-      console.log(editedItem)
+      this.component.setState({ isCompleted: editedItem.is_completed })
     })
   }
 

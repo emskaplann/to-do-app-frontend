@@ -7,10 +7,10 @@ import "react-datepicker/dist/react-datepicker.css"
 
 export default class NewProjectModal extends React.Component {
   state = {
-    date: "",
+    date: new Date(),
     task: {
       deadline: "",
-      title: "My Cool Task.",
+      title: "",
       projectId: 1,
     }
   }
@@ -19,7 +19,7 @@ export default class NewProjectModal extends React.Component {
   handleProjectSelect = projectId => this.setState({ task: { ...this.state.task, projectId: projectId } })
   handleChange = date => {
     let dateString = ""
-    if(date !== null){
+    if (date !== null) {
       dateString = date.toUTCString()
     }
     this.setState({ date: date, task: { ...this.state.task, deadline: dateString } })
@@ -44,7 +44,7 @@ export default class NewProjectModal extends React.Component {
                 <small>Title:</small>
               </Form.Label>
               <Col sm="10">
-                <Form.Control onChange={(event) => this.handleTitle(event.target.value)} plaintext defaultValue={this.state.task.title} />
+                <Form.Control onChange={(event) => this.handleTitle(event.target.value)} defaultValue={this.state.task.title} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} controlId="formProDesc">
@@ -73,7 +73,7 @@ export default class NewProjectModal extends React.Component {
 
         <Modal.Footer>
           <Button size='sm' variant="secondary" onClick={this.props.closeModal}>Close</Button>
-          <Button size='sm' onClick={(event) => this.props.handleTaskSubmit(this.state.task)} variant="primary">Create Project</Button>
+          <Button size='sm' onClick={(event) => this.props.handleTaskSubmit(this.state.task)} variant="primary">Create New Task</Button>
         </Modal.Footer>
       </Modal>
     )

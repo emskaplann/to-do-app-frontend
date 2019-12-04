@@ -28,10 +28,10 @@ export default class Projects extends React.Component {
     return (
       <Container fluid>
         <NewTaskModal show={this.state.showNTM} closeModal={this.openOrCloseModal} project={this.props.project} handleTaskSubmit={this.props.handleTaskSubmit} />
-        <Row>
+        <Row className='w-100'>
           <Col sm={7}>
             <ProjectTitleComponent project={project} className='mb-3' />
-            <NotesCard className='mb-3' project={project} openModal={this.openOrCloseModal} />
+            <NotesCard authProps={this.props.authProps} className='mb-3' project={project} openModal={this.openOrCloseModal} />
             {/* <Row>
               <Col sm={3}>
                 <br />
@@ -61,8 +61,8 @@ export default class Projects extends React.Component {
             </Row> */}
           </Col>
           <Col sm={5}>
-            <AllTasks title='Upcoming Tasks' tasks={project.tasks.filter(task => !task.is_completed)} style={{ backgroundColor: '#4d1411', color: "#fff" }} openModal={this.openOrCloseModal} />
-            <AllTasks title='Completed Tasks' tasks={project.tasks.filter(task => task.is_completed)} style={{ backgroundColor: '#669900', color: "#fff" }} />
+            <AllTasks authProps={this.props.authProps} title='Upcoming Tasks' tasks={project.tasks.filter(task => !task.is_completed)} style={{ backgroundColor: '#4d1411', color: "#fff" }} openModal={this.openOrCloseModal} />
+            <AllTasks authProps={this.props.authProps} title='Completed Tasks' tasks={project.tasks.filter(task => task.is_completed)} style={{ backgroundColor: '#669900', color: "#fff" }} />
           </Col>
         </Row>
       </Container>

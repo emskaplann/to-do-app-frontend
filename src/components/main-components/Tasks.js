@@ -28,7 +28,7 @@ export default class Tasks extends React.Component {
           <Col sm={6}>
             <UpcomingTasks dateFromState={this.state.date} tasks={this.props.tasks.filter(task => !task.is_completed)} />
             <br />
-            <AllTasks title="All Tasks" style={{ backgroundColor: '#4d1411', color: "#fff" }} tasks={this.props.tasks} openModal={this.openOrCloseModal} />
+            <AllTasks authProps={this.props.authProps} title="All Tasks" style={{ backgroundColor: '#4d1411', color: "#fff" }} tasks={this.props.tasks} openModal={this.openOrCloseModal} />
           </Col>
           <Col sm={3}>
             <RecentlyCompletedTasks tasks={this.props.tasks} />

@@ -7,7 +7,11 @@ class NoteService {
   }
 
   fetchNotesForProject = (projectId) => {
-    fetch(`${this.workingURL}/projects/${projectId}/notes`)
+    fetch(`${this.workingURL}/projects/${projectId}/notes`, {
+      headers: {
+        "Authorization": this.component.props.authProps.token
+      }
+    })
       .then(response => response.json())
       .then(notes => this.component.setState({ notes }))
   }
@@ -15,6 +19,7 @@ class NoteService {
   createNote = (note, projectId) => {
     fetch(`${this.workingURL}/projects/${projectId}/notes`, {
       headers: {
+        "Authorization": this.component.props.authProps.token,
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },

@@ -35,7 +35,6 @@ export default class DashBoard extends React.Component {
       trash: [],
       upcomingTasks: []
     }
-    // this.props.taskService = new TaskService(this)
   }
 
   onChange = date => this.setState({ date })

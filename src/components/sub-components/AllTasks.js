@@ -16,7 +16,7 @@ class AllTasks extends React.Component {
   }
 
 
-  closeModal = () => this.setState({isModalHidden2: true})
+  closeModal = () => this.setState({isModalHidden: true})
 
   shouldComponentUpdate(nextProps, nextState){
     if(nextState !== this.state){
@@ -27,7 +27,7 @@ class AllTasks extends React.Component {
 
   openModal = (task) => {
     this.checklistService.fetchChecklists(task.id)
-    this.setState({isModalHidden: false})
+    this.setState({isModalHidden: false, task: task})
   }
 
   render(){

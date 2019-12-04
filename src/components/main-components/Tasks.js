@@ -29,7 +29,7 @@ export default class Tasks extends React.Component {
           <Col sm={6}>
             <UpcomingTasks dateFromState={this.state.date} tasks={this.props.tasks.filter(task => !task.is_completed)} />
             <br />
-            <AllTasks tasks={this.props.tasks} openModal={this.openOrCloseModal} />
+            <AllTasks title="All Tasks" style={{ backgroundColor: '#4d1411', color: "#fff" }} tasks={this.props.tasks} openModal={this.openOrCloseModal} />
           </Col>
           <Col sm={3}>
             <RecentlyCompletedTasks tasks={this.props.tasks} />
@@ -42,6 +42,8 @@ export default class Tasks extends React.Component {
           </Col>
         </Row>
       </Container>
+
+
     )
   }
 }

@@ -16,14 +16,19 @@ export default class NewProjectModal extends React.Component {
     }
   }
 
-  handleTitle = name => this.setState({ task: { ...this.state.task, title: name} })
-  handleProjectSelect = projectId => this.setState({ task: { ...this.state.task, projectId: projectId }})
+  handleTitle = name => this.setState({ task: { ...this.state.task, title: name } })
+  handleProjectSelect = projectId => this.setState({ task: { ...this.state.task, projectId: projectId } })
   handleChange = date => {
     const dateString = date.toUTCString()
-    this.setState({ date: date, task: {...this.state.task, deadline: dateString} })
+    this.setState({ date: date, task: { ...this.state.task, deadline: dateString } })
   }
-  handleSelectChange = priority => this.setState({ task: { ...this.state.task, priority: priority }})
+  handleSelectChange = priority => this.setState({ task: { ...this.state.task, priority: priority } })
 
+  renderSelect = () => (
+    <Form.Control as="select" onChange={(event) => this.handleProjectSelect(event.target.value)} defaultValue={this.state.task.projectId}>
+      {this.props.projects.map(project => <option key={project.id} value={project.id}>{project.name}</option>)}
+    </Form.Control>
+  )
   render() {
     return (
       <Modal show={this.props.show}>
@@ -45,9 +50,7 @@ export default class NewProjectModal extends React.Component {
                 <small>Description:</small>
               </Form.Label>
               <Col sm="10">
-                <Form.Control as="select" onChange={(event) => this.handleProjectSelect(event.target.value)} defaultValue={this.state.task.projectId}>
-                  {this.props.projects.map(project => <option key={project.id} value={project.id}>{project.name}</option>)}
-                </Form.Control>
+                {this.props.projects ? this.renderSelect() : this.props.project.name}
               </Col>
             </Form.Group>
             <Form.Group as={Row} controlId="formProDeadline">

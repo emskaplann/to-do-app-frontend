@@ -1,17 +1,19 @@
 import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap'
 
-const RecentlyCompletedTasks = ({ tasks, openModal }) => {
-
+const AllTasks = ({ title, tasks, openModal, style }) => {
   return (
-    <Card style={{ width: '850px', maxWidth: '100%' }}>
-      <Card.Header style={{ backgroundColor: '#4d1411', color: "#fff" }}>
-      <div className="float-left">
-          All Tasks <i className="fa fa-fw fa-th" style={{ fontSize: '1em', marginLeft: 5 }} />
-      </div>
-      <div className="float-right" onClick={openModal}>
-        <strong>New</strong><i className="fa fa-fw fa-plus-square" style={{ fontSize: '1em', marginLeft: 5 }} />
-      </div>
+    <Card className='mb-2'>
+      <Card.Header style={style}>
+        <div className="float-left">
+          {title} <i className="fa fa-fw fa-th" style={{ fontSize: '1em', marginLeft: 5 }} />
+        </div>
+        {title !== "Completed Tasks" ?
+          <div className="float-right" onClick={openModal}>
+            <strong>New</strong><i className="fa fa-fw fa-plus-square" style={{ fontSize: '1em', marginLeft: 5 }} />
+          </div>
+          : null
+        }
       </Card.Header>
       {
         tasks.map(task =>
@@ -22,4 +24,5 @@ const RecentlyCompletedTasks = ({ tasks, openModal }) => {
   );
 }
 
-export default RecentlyCompletedTasks;
+export default AllTasks;
+//const { title, tasks, openModal, style } = this.props

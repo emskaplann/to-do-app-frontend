@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, ListGroup } from 'react-bootstrap/'
 import NoteService from '../../services/NoteService';
 import { NotesModal } from '../sub-components/NotesModal';
+import { Modal, Button, Form, Col, Row } from 'react-bootstrap'
 
 class NotesCard extends Component {
 
@@ -9,7 +10,8 @@ class NotesCard extends Component {
     super(props)
     this.state = {
       isModalHidden: false,
-      notes: []
+      notes: [],
+      text: ''
     }
     this.noteService = new NoteService(this)
   }
@@ -25,18 +27,34 @@ class NotesCard extends Component {
     this.noteService.fetchNotesForProject(this.props.project.id)
   }
 
+  renderForm = () => (
+    <Form>
+      <Form.Group as={Row} controlId="formProName" className='text-center'>
+        <Col sm="9">
+          <Form.Control as="textarea" autoFocus={true} onChange={(event) => this.setState({ text: event.target.value })} placeholder="Enter text here..." value={this.state.text} />
+        </Col>
+        <Col sm="3" className='my-auto'>
+          <Button onClick={(event) => this.handleSubmit({ note: { text: this.state.text } })} variant="primary">
+            Add Note
+          </Button>
+        </Col>
+      </Form.Group>
+    </Form>
+  )
+
   render() {
     const { project, className, openModal } = this.props
     return (
       <Card className={className}>
-        <NotesModal show={this.state.isModalHidden} closeModal={this.openOrCloseModal} handleSubmit={this.handleSubmit} />
+        {/* <NotesModal show={this.state.isModalHidden} closeModal={this.openOrCloseModal} handleSubmit={this.handleSubmit} /> */}
         <Card.Header style={{ backgroundColor: '#990033', color: '#fff' }}>
           Notes <i className="fa fa-fw fa-pencil-square-o" style={{ fontSize: '1em', marginLeft: 5 }} />
           <div className="float-right" onClick={this.openOrCloseModal}>
-            <strong>New</strong><i className="fa fa-fw fa-plus-square" style={{ fontSize: '1em', marginLeft: 5 }} />
+            <strong>{!this.state.isModalHidden ? "New" : "Cancel"}</strong><i className="fa fa-fw fa-plus-square" style={{ fontSize: '1em', marginLeft: 5 }} />
           </div>
         </Card.Header>
         <Card.Body>
+          {this.state.isModalHidden ? this.renderForm() : null}
           {this.state.notes.map(note => <ListGroup.Item key={`note-item-${note.id}`} style={{ border: '1px solid #d3d3d3' }}>{note.text}</ListGroup.Item>)}
         </Card.Body>
       </Card>

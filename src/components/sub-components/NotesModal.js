@@ -33,7 +33,7 @@ export class NotesModal extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button size='sm' variant="secondary" onClick={this.props.closeModal}>Close</Button>
-          <Button size='sm' onClick={(event) => this.handleSubmit()} variant="primary">Create Project</Button>
+          <Button size='sm' onClick={(event) => this.handleSubmit()} variant="primary">Add Note</Button>
         </Modal.Footer>
       </Modal>
     );

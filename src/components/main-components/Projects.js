@@ -38,7 +38,7 @@ export default class Projects extends React.Component {
           <Col sm={5}>
             {/* need to send in checklist service and item service from app.js  */}
             <AllTasks key={`length-of-tasks-${tasks.length}`} completeTask={this.completeTask} authProps={this.props.authProps} title='Upcoming Tasks' tasks={tasks} style={{ backgroundColor: '#4d1411', color: "#fff" }} openModal={this.openOrCloseModal} />
-            <AllTasks key={`length-of-completedTasks-${completedTasks.length}`} uthProps={this.props.authProps} title='Completed Tasks' tasks={completedTasks} style={{ backgroundColor: '#669900', color: "#fff" }} />
+            <AllTasks key={`length-of-completedTasks-${completedTasks.length}`} authProps={this.props.authProps} title='Completed Tasks' tasks={completedTasks} style={{ backgroundColor: '#669900', color: "#fff" }} />
           </Col>
         </Row>
       </Container>

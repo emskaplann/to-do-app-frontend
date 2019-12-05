@@ -29,10 +29,9 @@ export default class ChecklistService {
     })
       .then(response => response.json())
       .then(checklist => {
-        console.log(checklist)
         this.component.setState({
           checklists: [...this.component.state.checklists, checklist]
-        }, () => console.log(this.component.state.checklists))
+        })
       })
   }
 

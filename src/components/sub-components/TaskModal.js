@@ -8,7 +8,9 @@ export default class TaskModal extends React.Component {
     title: ''
   }
   handleChange = (event) => this.setState({ [event.target.name]: event.target.value })
+
   handleClick = () => this.setState({ newList: !this.state.newList })
+
   handleSubmit = (event) => {
     this.props.checklistService.createChecklist(this.props.task.id, { title: this.state.title })
     this.setState({ title: '', newList: false })
@@ -17,7 +19,7 @@ export default class TaskModal extends React.Component {
   renderForm = () => {
     const { title } = this.state
     return (
-      <Form>
+      <Form className='pt-1 pb-4 pl-2'>
         <Row>
           <Col sm='7'>
             <Form.Control placeholder='title' name='title' value={title} onChange={this.handleChange} />
@@ -28,7 +30,7 @@ export default class TaskModal extends React.Component {
             </Button>
           </Col>
           <Col sm='2'>
-            <Button variant="danger">
+            <Button variant="danger" onClick={() => this.setState({ newList: false })}>
               Cancel
             </Button>
           </Col>

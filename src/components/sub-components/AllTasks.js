@@ -18,6 +18,7 @@ class AllTasks extends React.Component {
   }
 
   closeModal = () => this.setState({ isModalHidden: true })
+
   updateChecklistsWith = (checklist) => {
     this.setState({
       checklists: this.state.checklists.map(list => list.id === checklist.id ? checklist : list)
@@ -25,9 +26,7 @@ class AllTasks extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState !== this.state) {
-      return true
-    }
+    if (nextState !== this.state) return true
     return false
   }
 
@@ -37,7 +36,7 @@ class AllTasks extends React.Component {
   }
 
   render() {
-    const { title, tasks, openModal, style } = this.props
+    const { title, tasks, openModal, style, completeTask } = this.props
     return (
       <Card className='mb-2' >
         <TaskModal itemService={this.itemService} checklistService={this.ChecklistService} authProps={this.props.authProps} task={this.state.task} show={!this.state.isModalHidden} checklists={this.state.checklists} closeModal={this.closeModal} />
@@ -52,13 +51,24 @@ class AllTasks extends React.Component {
             : null
           }
         </Card.Header>
-        {
-          tasks.map(task =>
-            <div key={`task-item${task.id}`}>
-              <ListGroup.Item key={`task-item-${task.id}`} onClick={() => this.openModal(task)}>{task.title}</ListGroup.Item>
-            </div>
-          )
-        }
+        <Card.Body>
+          {
+            tasks.map(task =>
+              <div key={`task-item${task.id}`}>
+                <ListGroup.Item key={`task-item-${task.id}`} className='d-flex' >
+                  <span className='flex-grow-1' onClick={() => this.openModal(task)}>
+                    {task.title}
+                  </span>
+                  <span>
+                    {title === "Upcoming Tasks" ? <i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: '#d3d3d3', marginLeft: 3 }} /> : null}
+                    {/* {title === "All Tasks" ? <i onClick={() => completeTask(task.id)} className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: `${task.is_completed ? 'green' : '#d3d3d3'}`, marginLeft: 3 }} /> : null} */}
+
+                  </span>
+                </ListGroup.Item>
+              </div>
+            )
+          }
+        </Card.Body>
       </Card>
     )
   }

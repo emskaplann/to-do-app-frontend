@@ -54,7 +54,14 @@ class NotesCard extends Component {
         </Card.Header>
         <Card.Body>
           {this.state.isModalHidden ? this.renderForm() : null}
-          {this.state.notes.map(note => <ListGroup.Item key={`note-item-${note.id}`} style={{ border: '1px solid #d3d3d3' }}>{note.text}</ListGroup.Item>)}
+          {this.state.notes.map(note => (
+            <ListGroup.Item className='d-flex' key={`note-item-${note.id}`} style={{ border: '1px solid #d3d3d3' }}>
+              {note.text}
+              <span className='flex-fill text-right' onClick={() => this.noteService.deleteNote(note.id)}>
+                <i className="fa fa-fw fa-trash" style={{ fontSize: "1.25em", color: "darkgray" }}></i>
+              </span>
+            </ListGroup.Item>
+          ))}
         </Card.Body>
       </Card>
     )

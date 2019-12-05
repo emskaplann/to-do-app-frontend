@@ -19,6 +19,9 @@ export default class Tasks extends React.Component {
 
   openOrCloseModal = () => this.setState({ showNTM: !this.state.showNTM })
   onChange = date => this.setState({ date })
+  completeTask = (taskId) => {
+    this.props.taskService.completeTask(taskId)
+  }
 
   render() {
     return (
@@ -28,7 +31,7 @@ export default class Tasks extends React.Component {
           <Col sm={6}>
             <UpcomingTasks dateFromState={this.state.date} tasks={this.props.tasks.filter(task => !task.is_completed)} />
             <br />
-            <AllTasks authProps={this.props.authProps} title="All Tasks" style={{ backgroundColor: '#4d1411', color: "#fff" }} tasks={this.props.tasks} openModal={this.openOrCloseModal} />
+            <AllTasks tasks={this.props.tasks} key={`All-tasks-view-${this.props.tasks.length}`} authProps={this.props.authProps} title="All Tasks" style={{ backgroundColor: '#4d1411', color: "#fff" }} openModal={this.openOrCloseModal} completeTask={this.completeTask} />
           </Col>
           <Col sm={3}>
             <RecentlyCompletedTasks tasks={this.props.tasks} />

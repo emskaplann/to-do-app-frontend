@@ -22,10 +22,10 @@ export default class DashBoard extends React.Component {
   onChange = date => this.setState({ date })
   openModal = () => this.setState({ showNPM: true })
   handleModalClose = () => this.setState({ showNPM: false })
-  allTasks = () => this.props.projects.map(project => project.tasks).flat()
+  allTasks = () => this.props.allTasks
 
   handleProjectSubmit = (obj) => {
-    let newObj = { ...obj, userId: this.state.userId }
+    let newObj = { ...obj, userId: this.props.authProps.loggedInUserId }
     this.props.projectService.postProject(newObj)
     this.setState({ showNPM: false })
   }
@@ -54,9 +54,7 @@ export default class DashBoard extends React.Component {
 }
 
 function CustomToggle({ children, eventKey, color }) {
-  const changeContent = useAccordionToggle(eventKey, () =>
-    console.log('works!'),
-  )
+  const changeContent = useAccordionToggle(eventKey, () => { })
 
   return (
     <button

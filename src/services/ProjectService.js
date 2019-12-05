@@ -8,21 +8,23 @@ export default class ProjectService {
   fetchProjects = (userId) => {
     fetch(`${this.productionURL}/users/${userId}/projects`, {
       headers: {
-        "Authorization": this.component.state.token
+        "Authorization": this.component.props.authProps.token
       }
-    })
-      .then(r => r.json())
-      .then(projects => {
-        const allTasks = projects.map(project => project.tasks).flat()
-        this.component.setState({ projects, allTasks })
-      })
+    }).then(response => {
+      if (response.status > 199 && response.status < 300) return response.json()
+      throw response.statusText
+    }).then(projects => {
+      console.log(projects)
+      const allTasks = projects.map(project => project.tasks).flat()
+      this.component.setState({ projects, allTasks })
+    }).catch(reason => console.log(reason))
   }
 
   postProject = (project) => {
     fetch(`${this.productionURL}/users/${project.userId}/projects`, {
       method: "POST",
       headers: {
-        "Authorization": this.component.state.token,
+        "Authorization": this.component.props.authProps.token,
         "Content-Type": "application/json",
         Accept: "application/json"
       }, body: JSON.stringify(project)
@@ -32,11 +34,10 @@ export default class ProjectService {
   }
 
   postTask = (task) => {
-    console.log(task)
     fetch(`${this.productionURL}/projects/${task.projectId}/tasks`, {
       method: "POST",
       headers: {
-        "Authorization": this.component.state.token,
+        "Authorization": this.component.props.authProps.token,
         "Content-Type": "application/json",
         Accept: "application/json"
       }, body: JSON.stringify(task)
@@ -49,9 +50,24 @@ export default class ProjectService {
         const newProjects = this.component.state.projects.map(project => project.id === projectCopy.id ? projectCopy : project)
         this.component.setState({
           projects: newProjects,
-          allTasks: newProjects.map(project => project.tasks).flat()
+          allTasks: newProjects.map(project => project.tasks).flat(),
         })
       })
   }
 
+  updateProject = (id, project) => {
+    fetch(`${this.productionURL}/projects/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Authorization": this.component.props.authProps.token,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }, body: JSON.stringify({ project })
+    })
+      .then(r => r.json())
+      .then(updatedProject =>
+        this.component.setState({
+          projects: this.component.state.projects.map(proj => proj.id === updatedProject.id ? updatedProject : proj)
+        }))
+  }
 }

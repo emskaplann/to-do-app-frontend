@@ -13,9 +13,15 @@ export default class Checklist extends React.Component {
     }
   }
 
-  renderItems = () => this.props.checklist.items.map(item => <SingleItem authProps={this.props.authProps} key={item.id} item={item} deleteItem={this.deleteItem} />)
+  renderItems = () => {
+    const items = [...this.props.checklist.items]
+    items.sort((a, b) => a.id - b.id)
+    return items.map(item => <SingleItem checklistId={this.props.checklist.id} itemService={this.props.itemService} authProps={this.props.authProps} key={item.id} item={item} deleteItem={this.deleteItem} />)
+  }
   handleChange = (event) => this.setState({ [event.target.name]: event.target.value })
+
   handleClick = () => this.setState({ addItem: !this.state.addItem })
+
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.itemService.createNewItem(this.props.checklist.id, { text: this.state.text })
@@ -53,13 +59,20 @@ export default class Checklist extends React.Component {
     return (
       <div key={this.props.checklist.id} className='mb-3'>
         <Card>
-          <Card.Header className='d-flex'>
-            {this.props.checklist.title}
+          <Card.Header >
+            <Row>
+              <Col sm={8}>
+                {this.props.checklist.title}
+              </Col>
+              <Col sm={2}>
+                <Button size="sm" onClick={() => this.setState({ showItems: !this.state.showItems })}>Expand</Button>
 
-            <span className='flex-fill text-right'>
-              <Button size="sm" onClick={() => this.setState({ showItems: !this.state.showItems })}>Expand</Button>
-              <i onClick={event => this.handleClick()} className="fa fa-fw fa-plus-square align-self-center" style={{ fontSize: '1.5em', marginLeft: 5 }} />
-            </span>
+              </Col>
+              <Col sm={2} className='my-auto pt-1'>
+                <i onClick={event => this.handleClick()} className="fa fa-fw fa-plus-square align-self-center" style={{ fontSize: '1.5em', marginLeft: 5 }} />
+              </Col>
+            </Row>
+
           </Card.Header>
           {this.state.addItem ? this.renderForm() : null}
           {this.state.showItems ? this.renderItems() : null}

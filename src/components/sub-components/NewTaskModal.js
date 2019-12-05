@@ -3,9 +3,10 @@ import { Modal, Button, Form, Col, Row } from 'react-bootstrap'
 import DatePicker from "react-datepicker"
 
 import "react-datepicker/dist/react-datepicker.css"
+import { conformToMask } from 'react-text-mask';
 
 
-export default class NewProjectModal extends React.Component {
+export default class NewTaskModal extends React.Component {
   state = {
     date: new Date(),
     task: {
@@ -18,14 +19,21 @@ export default class NewProjectModal extends React.Component {
   handleTitle = name => this.setState({ task: { ...this.state.task, title: name } })
   handleProjectSelect = projectId => this.setState({ task: { ...this.state.task, projectId: projectId } })
   handleChange = date => {
-    let dateString = ""
-    if (date !== null) {
-      dateString = date.toUTCString()
-    }
-    this.setState({ date: date, task: { ...this.state.task, deadline: dateString } })
+    this.setState({ date: date })
   }
   handleSelectChange = priority => this.setState({ task: { ...this.state.task, priority: priority } })
-
+  handleSubmit = () => {
+    const newTask = { ...this.state.task }
+    newTask.deadline = this.state.date.toUTCString()
+    this.props.handleTaskSubmit(newTask)
+    this.setState({
+      task: {
+        deadline: "",
+        title: "",
+        projectId: this.props.project ? this.props.project.id : 1,
+      }
+    }, () => this.props.closeModal())
+  }
   renderSelect = () => (
     <Form.Control as="select" onChange={(event) => this.handleProjectSelect(event.target.value)} defaultValue={this.state.task.projectId}>
       {this.props.projects.map(project => <option key={project.id} value={project.id}>{project.name}</option>)}
@@ -73,7 +81,7 @@ export default class NewProjectModal extends React.Component {
 
         <Modal.Footer>
           <Button size='sm' variant="secondary" onClick={this.props.closeModal}>Close</Button>
-          <Button size='sm' onClick={(event) => this.props.handleTaskSubmit(this.state.task)} variant="primary">Create New Task</Button>
+          <Button size='sm' onClick={(event) => this.handleSubmit()} variant="primary">Create New Task</Button>
         </Modal.Footer>
       </Modal>
     )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
+import { Navbar, Button } from 'react-bootstrap';
 import SideNavPage from './components/sub-components/SideNav.js';
 import LoginPage from './components/main-components/LoginPage';
 import DashBoard from './components/main-components/DashBoard.js'
@@ -9,20 +9,15 @@ import { Route, useParams, Switch } from 'react-router-dom'
 import ProjectService from './services/ProjectService.js'
 import TaskService from './services/TaskService.js'
 import './App.css';
+import { MainViewRenderProps } from './components/main-components/MainViewRenderProps.js';
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       token: null,
       loggedInUserId: null,
-      projects: [],
-      allTasks: [],
     }
-    this.projectService = new ProjectService(this)
-    this.taskService = new TaskService(this)
   }
-
-  handleTaskSubmit = obj => this.projectService.postTask(obj)
 
   authProps = () => ({ token: this.state.token, loggedInUserId: this.state.loggedInUserId })
 
@@ -33,21 +28,21 @@ class App extends Component {
     })
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.loggedInUserId !== this.state.loggedInUserId && this.state.loggedInUserId) {
-      this.projectService.fetchProjects(this.state.loggedInUserId)
-    }
+  logout = () => {
+    localStorage.clear()
+    this.setState({
+      token: null,
+      loggedInUserId: null
+    })
   }
-
-  findProjectWith = (id) => this.state.projects.find(project => project.id === parseInt(id))
 
   showSideNavWithMain = ({ location, history }) => (
     <SideNavPage location={location} history={history}>
       <main style={{ marginLeft: 75, marginTop: 25 }}>
         <Switch>
-          <Route path="/dashboard" exact component={props => <DashBoard projectService={this.projectService} taskService={this.taskService} projects={this.state.projects} authProps={this.authProps()} />} />
-          <Route path="/projects/:id" component={props => <Projects project={this.findProjectWith(useParams().id)} handleTaskSubmit={this.handleTaskSubmit} authProps={this.authProps()} />} />
-          <Route path="/tasks" component={props => <Tasks tasks={this.state.allTasks} projects={this.state.projects} handleTaskSubmit={this.handleTaskSubmit} authProps={this.authProps()} />} />
+          <Route path="/dashboard" exact component={props => <MainViewRenderProps children={DashBoard} authProps={this.authProps()} />} />
+          <Route path="/projects/:id" component={props => <MainViewRenderProps children={Projects} id={useParams().id} authProps={this.authProps()} />} />
+          {/* <Route path="/tasks" component={props => <MainViewRenderProps children={Tasks} authProps={this.authProps()} />} /> */}
         </Switch>
       </main>
     </SideNavPage>
@@ -60,6 +55,13 @@ class App extends Component {
           <i className="fa fa-fw fa-check-square-o" style={{ fontSize: '1em', marginLeft: 60 }} />
           <span className='ml-2'>ToDo App</span>
         </Navbar.Brand>
+        {this.state.token ?
+          <Navbar.Collapse className="justify-content-end" onClick={() => this.logout()} >
+            <Button> Logout </Button>
+          </Navbar.Collapse>
+          : null
+        }
+
       </Navbar>
       {this.state.token ? this.showSideNavWithMain(this.props) : <LoginPage parent={this} />}
     </>

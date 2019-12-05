@@ -6,14 +6,29 @@ const logUserIn = (username, password, parent) => {
   const userService = new UserService(parent)
   userService.login({ username, password })
 }
+
+const handleClick = (signup, username, password, parent) => {
+  if (signup) {
+    const userService = new UserService(parent)
+    userService.createUser({ username, password })
+  } else {
+    logUserIn(username, password, parent)
+  }
+}
+// const loginInForm = (username, password, setUsername, setPassword) => (
+
+// )
+
 const LoginPage = ({ parent }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-
+  const [signup, setSignup] = useState(false)
   return (
     <Container className='d-flex justify-content-center flex-column  h-100'>
-      <div>
-
+      <div className="text-center">
+        <h1 className='pt-5'>
+          {signup ? "Create New Account" : "Login"}
+        </h1>
       </div>
       <div className='d-flex flex-row w-100 h-100  flex-fill justify-content-center '>
         <Form >
@@ -28,7 +43,12 @@ const LoginPage = ({ parent }) => {
         </Form>
       </div>
       <div className="w-50 d-flex align-self-center justify-content-center" >
-        <Button size='sm' onClick={e => logUserIn(username, password, parent)} variant="primary">Login</Button>
+        <Button size='sm' onClick={e => handleClick(signup, username, password, parent)} variant="primary">
+          {!signup ? "Login" : "Create"}
+        </Button>
+        <Button size='sm' onClick={e => setSignup(!signup)} variant="primary" className='ml-5'>
+          {!signup ? "Signup" : "Login"}
+        </Button>
       </div>
 
     </Container>

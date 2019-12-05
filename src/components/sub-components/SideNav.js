@@ -35,14 +35,14 @@ const SideNavPage = ({ location, history, children }) => {
               Projects
                   </NavText>
           </NavItem>
-          <NavItem eventKey="tasks" active={isActive(location, '/tasks')}>
+          {/* <NavItem eventKey="tasks" active={isActive(location, '/tasks')}>
             <NavIcon>
               <i className="fa fa-fw fa-tasks" style={{ fontSize: '1.75em' }} />
             </NavIcon>
             <NavText>
               Tasks
                   </NavText>
-          </NavItem>
+          </NavItem> */}
         </SideNav.Nav>
       </SideNav>
       {children}

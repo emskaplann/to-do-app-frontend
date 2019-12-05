@@ -9,7 +9,9 @@ const getSpanText = (text, completeTask, task) => {
 }
 
 const UpcomingTasks = ({ tasks, dateFromState, completeTask }) => {
-  let upcomingTasks = tasks.filter(task => new Date(task.deadline).valueOf() <= dateFromState.setHours(0, 0, 0, 0).valueOf())
+  // console.log(dateFromState)
+  // console.log(tasks)
+  let upcomingTasks = tasks.filter(task => new Date(task.deadline).setHours(0, 0, 0, 0).valueOf() <= dateFromState.setHours(0, 0, 0, 0).valueOf())
   upcomingTasks = upcomingTasks.map(task => {
     task['spanText'] = new Date(task.deadline).setHours(0, 0, 0, 0).valueOf() === dateFromState.setHours(0, 0, 0, 0).valueOf() ? 'Due Today' : 'Past Due'
     return task

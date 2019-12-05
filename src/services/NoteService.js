@@ -28,9 +28,26 @@ class NoteService {
     })
       .then(response => response.json())
       .then(note => {
-        console.log(note)
         this.component.setState({
           notes: [...this.component.state.notes, note]
+        })
+      })
+  }
+
+  deleteNote = (noteId) => {
+    fetch(`${this.workingURL}/notes/${noteId}`, { //eslint-disable-line 
+      method: 'DELETE',
+      headers: {
+        "Authorization": this.component.props.authProps.token,
+        'content-type': 'application/json',
+        Accept: 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .then(deletedNote => {
+        const notes = this.component.state.notes
+        this.component.setState({
+          notes: notes.filter(note => note.id !== deletedNote.id)
         })
       })
   }

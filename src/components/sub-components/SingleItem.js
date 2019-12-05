@@ -3,16 +3,16 @@ import { Card, ListGroup } from 'react-bootstrap'
 import ItemService from '../../services/ItemService.js'
 
 export default class SingleItem extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      isCompleted: props.is_completed
-    }
-    this.itemService = new ItemService(this)
-  }
+  // constructor(props) {
+  //   super();
+  //   // this.state = {
+  //   //   isCompleted: props.is_completed
+  //   // }
+  //   // this.itemService = new ItemService(this)
+  // }
 
   completeItem = (itemId) => {
-    this.itemService.completeItem(itemId, !this.state.isCompleted)
+    this.props.itemService.completeItem(itemId, !this.props.item.is_completed, this.props.checklistId)
   }
 
   render() {
@@ -21,7 +21,7 @@ export default class SingleItem extends React.Component {
         <Card.Body key={`checklist-item${this.props.item.id}`}>
           <ListGroup.Item key={this.props.item.id}>
             <div className='float-left'>
-              <i onClick={() => this.completeItem(this.props.item.id)} className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: !this.state.isCompleted ? 'silver' : 'green' }} />
+              <i onClick={() => this.completeItem(this.props.item.id)} className="fa fa-fw fa-check" style={{ fontSize: '1.5em', color: !this.props.item.is_completed ? 'silver' : 'green' }} />
 
               {this.props.item.text}
             </div>

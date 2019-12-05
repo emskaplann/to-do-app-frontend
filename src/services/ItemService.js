@@ -17,7 +17,6 @@ export default class ItemService {
     })
       .then(response => response.json())
       .then(newItem => {
-        console.log(newItem)
         const oldChecklist = this.component.state.checklists.find(list => list.id === checklistId)
         const newChecklist = Object.assign({}, oldChecklist)
         newChecklist.items = [...newChecklist.items, newItem]
@@ -25,7 +24,7 @@ export default class ItemService {
       })
   }
 
-  completeItem = (itemId, bool) => {
+  completeItem = (itemId, bool, checklistId) => {
     fetch(`https://arcane-sands-50858.herokuapp.com/items/${itemId}`, {
       method: 'PATCH',
       headers: {
@@ -40,8 +39,10 @@ export default class ItemService {
     })
       .then(r => r.json())
       .then(editedItem => {
-        console.log(this.component)
-        this.component.setState({ isCompleted: editedItem.is_completed })
+        const oldChecklist = this.component.state.checklists.find(list => list.id === checklistId)
+        const newChecklist = Object.assign({}, oldChecklist)
+        newChecklist.items = newChecklist.items.map(item => editedItem.id === item.id ? editedItem : item)
+        this.component.updateChecklistsWith(newChecklist)
       })
   }
 
@@ -56,7 +57,6 @@ export default class ItemService {
     })
       .then(r => r.json())
       .then(item => {
-        console.log(item)
         const oldChecklist = this.component.state.checklists.find(list => list.id === checklistId)
         const newChecklist = Object.assign({}, oldChecklist)
         newChecklist.items = newChecklist.items.filter(oldItem => oldItem.id !== item.id)

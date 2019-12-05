@@ -10,22 +10,22 @@ export default class NewProjectModal extends React.Component {
     show: this.props.show,
     project: {
       date: "",
-      description: "I want to this and that.",
-      name: "My Cool Project.",
-      priority: "medium",
+      description: "",
+      name: "",
+      priority: "",
     }
   }
 
-  handleName = name => this.setState({ project: { ...this.state.project, name: name} })
-  handleDesc = description => this.setState({ project: { ...this.state.project, description: description }})
-  handleChange = date => this.setState({ project: { ...this.state.project, date: date }})
-  handleSelectChange = priority => this.setState({ project: { ...this.state.project, priority: priority }})
+  handleName = name => this.setState({ project: { ...this.state.project, name: name } })
+  handleDesc = description => this.setState({ project: { ...this.state.project, description: description } })
+  handleChange = date => this.setState({ project: { ...this.state.project, date: date } })
+  handleSelectChange = priority => this.setState({ project: { ...this.state.project, priority: priority } })
 
   render() {
     return (
       <Modal show={this.props.show}>
         <Modal.Header>
-          <Modal.Title>New Project Form</Modal.Title>
+          <Modal.Title>Enter New Project Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -34,7 +34,7 @@ export default class NewProjectModal extends React.Component {
                 <small>Name:</small>
               </Form.Label>
               <Col sm="10">
-                <Form.Control onChange={(event) => this.handleName(event.target.value)} plaintext defaultValue={this.state.project.name} />
+                <Form.Control onChange={(event) => this.handleName(event.target.value)} value={this.state.project.name} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} controlId="formProDesc">
@@ -42,7 +42,7 @@ export default class NewProjectModal extends React.Component {
                 <small>Description:</small>
               </Form.Label>
               <Col sm="10">
-                <Form.Control plaintext onChange={(event) => this.handleDesc(event.target.value)} defaultValue={this.state.project.description} />
+                <Form.Control onChange={(event) => this.handleDesc(event.target.value)} value={this.state.project.description} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} controlId="formProPriority">

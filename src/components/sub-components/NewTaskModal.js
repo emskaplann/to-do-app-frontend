@@ -11,7 +11,7 @@ export default class NewProjectModal extends React.Component {
     task: {
       deadline: "",
       title: "",
-      projectId: 1,
+      projectId: this.props.project ? this.props.project.id : 1,
     }
   }
 

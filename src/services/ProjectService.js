@@ -8,7 +8,7 @@ export default class ProjectService {
   fetchProjects = (userId) => {
     fetch(`${this.productionURL}/users/${userId}/projects`, {
       headers: {
-        "Authorization": this.component.props.authProps.token
+        "Authorization": this.component.state.token
       }
     })
       .then(r => r.json())
@@ -22,7 +22,7 @@ export default class ProjectService {
     fetch(`${this.productionURL}/users/${project.userId}/projects`, {
       method: "POST",
       headers: {
-        "Authorization": this.component.props.authProps.token,
+        "Authorization": this.component.state.token,
         "Content-Type": "application/json",
         Accept: "application/json"
       }, body: JSON.stringify(project)
@@ -36,7 +36,7 @@ export default class ProjectService {
     fetch(`${this.productionURL}/projects/${task.projectId}/tasks`, {
       method: "POST",
       headers: {
-        "Authorization": this.component.props.authProps.token,
+        "Authorization": this.component.state.token,
         "Content-Type": "application/json",
         Accept: "application/json"
       }, body: JSON.stringify(task)

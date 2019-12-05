@@ -40,7 +40,7 @@ export default class ItemService {
     })
       .then(r => r.json())
       .then(editedItem => {
-        console.log(editedItem)
+        console.log(this.component)
         this.component.setState({ isCompleted: editedItem.is_completed })
       })
   }

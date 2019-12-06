@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import SideNavPage from './components/sub-components/SideNav.js';
 import LoginPage from './components/main-components/LoginPage';
 import DashBoard from './components/main-components/DashBoard.js'
 import Projects from './components/main-components/Projects.js'
-import Tasks from './components/main-components/Tasks.js'
 import { Route, useParams, Switch } from 'react-router-dom'
-import ProjectService from './services/ProjectService.js'
-import TaskService from './services/TaskService.js'
 import './App.css';
 import { MainViewRenderProps } from './components/main-components/MainViewRenderProps.js';
+
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       token: null,
       loggedInUserId: null,
-      projects: [],
-      loggedIn: false,
+      projects: []
     }
   }
 
@@ -52,7 +49,7 @@ class App extends Component {
   }
 
   showSideNavWithMain = ({ location, history }) => (
-    <SideNavPage location={location} history={history} firstProjectId={this.state.projects[0].id}>
+    <SideNavPage location={location} firstProjectId={this.state.projects[0].id} history={history}>
       <main style={{ marginLeft: 75, marginTop: 25 }}>
         <Switch>
           <Route path="/dashboard" exact component={props => <MainViewRenderProps children={DashBoard} authProps={this.authProps()} />} />
@@ -71,14 +68,14 @@ class App extends Component {
           <span className='ml-2'>ToDo App</span>
         </Navbar.Brand>
         {this.state.token ?
-          <Navbar.Collapse className="justify-content-end" onClick={() => this.logout()} >
-            <h5 style={{color: '#fff', marginTop: 5}}>Logout</h5>
+          <Navbar.Collapse className="justify-content-end" onClick={() => this.logout()} style={{color: '#fff'}}>
+             <strong>Logout</strong><i className="fa fa-fw fa-sign-out" style={{ fontSize: '1em', marginLeft: 5 }} />
           </Navbar.Collapse>
           : null
         }
 
       </Navbar>
-      {this.state.projects.length > 0 ? this.showSideNavWithMain(this.props) : <LoginPage parent={this} bool={this.state.loggedIn} />}
+      {this.state.token && this.state.projects[0] ? this.showSideNavWithMain(this.props) : <LoginPage parent={this} />}
     </>
   }
 }

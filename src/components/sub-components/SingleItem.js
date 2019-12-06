@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
-import ItemService from '../../services/ItemService.js'
 
 export default class SingleItem extends React.Component {
   // constructor(props) {

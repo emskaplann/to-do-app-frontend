@@ -4,7 +4,7 @@ import NewProjectModal from '../sub-components/NewProjectModal.js'
 import UpcomingTasks from '../sub-components/UpcomingTasks.js'
 import RecentlyCompletedTasks from '../sub-components/RecentlyCompletedTasks.js'
 import ProjectCardsComponent from '../sub-components/ProjectCardsComponent'
-import { Container, Accordion, Row, Col, Card, ListGroup, useAccordionToggle } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 export default class DashBoard extends React.Component {
   constructor(props) {
@@ -51,20 +51,6 @@ export default class DashBoard extends React.Component {
       </Container>
     )
   }
-}
-
-function CustomToggle({ children, eventKey, color }) {
-  const changeContent = useAccordionToggle(eventKey, () => { })
-
-  return (
-    <button
-      type="button"
-      style={{ backgroundColor: color, color: '#fff', border: 0 }}
-      onClick={changeContent}
-    >
-      {children}
-    </button>
-  )
 }
 
 // <Accordion defaultActiveKey="0">

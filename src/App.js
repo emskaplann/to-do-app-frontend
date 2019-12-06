@@ -16,6 +16,8 @@ class App extends Component {
     this.state = {
       token: null,
       loggedInUserId: null,
+      projects: [],
+      loggedIn: false,
     }
   }
 
@@ -25,7 +27,7 @@ class App extends Component {
     this.setState({
       token: localStorage.token,
       loggedInUserId: localStorage.userId
-    })
+    }, this.fetchForFirstProjectId)
   }
 
   logout = () => {
@@ -36,8 +38,21 @@ class App extends Component {
     })
   }
 
+  fetchForFirstProjectId = () => {
+      fetch(`https://arcane-sands-50858.herokuapp.com/users/${this.state.loggedInUserId}/projects`, {
+        headers: {
+          "Authorization": this.state.token
+        }
+      }).then(response => {
+        if (response.status > 199 && response.status < 300) return response.json()
+        throw response.statusText
+      }).then(projects => {
+        this.setState({ projects })
+      }).catch(reason => console.log(reason))
+  }
+
   showSideNavWithMain = ({ location, history }) => (
-    <SideNavPage location={location} history={history}>
+    <SideNavPage location={location} history={history} firstProjectId={this.state.projects[0].id}>
       <main style={{ marginLeft: 75, marginTop: 25 }}>
         <Switch>
           <Route path="/dashboard" exact component={props => <MainViewRenderProps children={DashBoard} authProps={this.authProps()} />} />
@@ -57,17 +72,15 @@ class App extends Component {
         </Navbar.Brand>
         {this.state.token ?
           <Navbar.Collapse className="justify-content-end" onClick={() => this.logout()} >
-            <Button> Logout </Button>
+            <h5 style={{color: '#fff', marginTop: 5}}>Logout</h5>
           </Navbar.Collapse>
           : null
         }
 
       </Navbar>
-      {this.state.token ? this.showSideNavWithMain(this.props) : <LoginPage parent={this} />}
+      {this.state.projects.length > 0 ? this.showSideNavWithMain(this.props) : <LoginPage parent={this} bool={this.state.loggedIn} />}
     </>
   }
 }
 
 export default App;
-
-

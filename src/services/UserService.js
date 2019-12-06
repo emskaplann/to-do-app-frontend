@@ -7,7 +7,7 @@ class UserService {
 
 
   createUser = (user) => {
-    fetch(`${this.workingURL}/users`, { //eslint-disable-line 
+    fetch(`${this.workingURL}/users`, { //eslint-disable-line
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -23,13 +23,13 @@ class UserService {
         localStorage.userId = user_id
         this.component.setState({
           token: token,
-          loggedInUserId: user_id
+          loggedInUserId: user_id,
         })
       })
   }
 
   login = (user) => {
-    fetch(`${this.workingURL}/login`, { //eslint-disable-line 
+    fetch(`${this.workingURL}/login`, { //eslint-disable-line
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -45,7 +45,8 @@ class UserService {
         localStorage.userId = user_id
         this.component.setState({
           token: token,
-          loggedInUserId: user_id
+          loggedInUserId: user_id,
+          loggedIn: true
         })
       })
   }

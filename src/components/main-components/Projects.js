@@ -23,6 +23,7 @@ export default class Projects extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const { project } = this.props
     if (!project) return null
     const tasks = project.tasks.filter(task => !task.is_completed)

@@ -5,7 +5,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 
 const isActive = (location, pathName) => location.pathname.includes(pathName) ? true : false
 
-const SideNavPage = ({ location, history, children }) => {
+const SideNavPage = ({ location, history, children, firstProjectId }) => {
   return (
     <>
       <SideNav
@@ -18,7 +18,7 @@ const SideNavPage = ({ location, history, children }) => {
         }}
       >
         <SideNav.Toggle />
-        <SideNav.Nav >
+        <SideNav.Nav defaultActiveKey='/dashboard'>
           <NavItem eventKey="dashboard" active={isActive(location, '/dashboard')}>
             <NavIcon >
               <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
@@ -27,7 +27,7 @@ const SideNavPage = ({ location, history, children }) => {
               DashBoard
                   </NavText>
           </NavItem>
-          <NavItem eventKey="projects/1" active={isActive(location, '/projects')}>
+          <NavItem eventKey={`projects/${firstProjectId}`} active={isActive(location, '/projects')}>
             <NavIcon>
               <i className="fa fa-fw fa-list-alt" style={{ fontSize: '1.75em' }} />
             </NavIcon>

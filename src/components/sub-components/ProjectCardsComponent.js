@@ -21,7 +21,7 @@ const renderRow = (row, index) => (
       <Col key={`project-${project.id}`} sm={4}>
         <Link to={`/projects/${project.id}`}>
           <Card key={`project-${project.id}`}>
-            <Card.Header>
+            <Card.Header style={{color: '#000000'}}>
               {project.name}
             </Card.Header>
           </Card>

@@ -3,8 +3,6 @@ import { Modal, Button, Form, Col, Row } from 'react-bootstrap'
 import DatePicker from "react-datepicker"
 
 import "react-datepicker/dist/react-datepicker.css"
-import { conformToMask } from 'react-text-mask';
-
 
 export default class NewTaskModal extends React.Component {
   state = {

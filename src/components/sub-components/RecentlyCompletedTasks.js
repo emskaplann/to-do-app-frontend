@@ -22,6 +22,7 @@ const RecentlyCompletedTasks = ({ tasks, completeTask }) => {
           </ListGroup.Item>
         })
       }
+      {completed_tasks.length === 0 ? <h5 style={{marginTop: 5, alignSelf: 'center'}}>No Completed Task!</h5> : console.log(completed_tasks) }
     </Card>
   );
 }

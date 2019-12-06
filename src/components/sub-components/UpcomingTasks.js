@@ -30,6 +30,7 @@ const UpcomingTasks = ({ tasks, dateFromState, completeTask }) => {
             </ListGroup.Item>)
         }
         )}
+        {upcomingTasks.length === 0 ? <h5 style={{marginTop: 5, alignSelf: 'center'}}>No Upcoming Task!</h5> : console.log(upcomingTasks) }
       </Card>
     </div>
   )

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Button, Row, Col, Form } from 'react-bootstrap/'
-import ProjectService from '../../services/ProjectService';
+import { Card, Row, Col, Form } from 'react-bootstrap/'
 
 const handleSubmit = (isEditing, name, description, projectService, project) => {
   projectService.updateProject(project.id, { name, description })
@@ -19,9 +18,9 @@ const ProjectTitleComponent = ({ project, className, projectService }) => {
             {editing ? <Form.Control value={name} placeholder={project.name} onChange={(e) => setName(e.target.value)} /> : project.name /* {project.name}<i className="fa fa-fw fa-square" style={{ fontSize: '1em', marginLeft: 5 }} /> */}
           </Col>
           <Col sm={2} className='text-right'>
-            <Button variant='light' onClick={() => !editing ? isEditing(true) : handleSubmit(isEditing, name, desc, projectService, project)}>
-              {editing ? 'Done' : 'Edit'}
-            </Button>
+            <div variant='light' onClick={() => !editing ? isEditing(true) : handleSubmit(isEditing, name, desc, projectService, project)}>
+              <strong>{editing ? 'Done' : 'Edit'}</strong><i className={!editing ? "fa fa-fw fa-pencil" : "fa fa-fw fa-check"} style={{ fontSize: '1em', marginLeft: 5 }} />
+            </div>
           </Col>
         </Row>
 

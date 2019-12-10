@@ -14,8 +14,8 @@ These Languages and Frameworks are for Web and Mobile app. And this repo is just
 * [Ruby on Rails](https://rubyonrails.org/)
 * [JWT Authentication](https://jwt.io/)
 #### Link to Related Repos
-[ToDo-App-Mobile](https://github.com/emskaplann/to-do-app-mobile)
-[ToDo App Back-End](https://github.com/rmeji1/mod4-todo-app-backend)
+* [ToDo-App-Mobile](https://github.com/emskaplann/to-do-app-mobile)
+* [ToDo App Back-End](https://github.com/rmeji1/mod4-todo-app-backend)
 
 ## Installation
 First of all, clone or fork-clone this repo and after that use the package manager **npm** to install ToDo App's packages locally. After all of that, you can basically run **"npm start"** to see the project in your browser.

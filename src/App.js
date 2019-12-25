@@ -52,9 +52,9 @@ class App extends Component {
     <SideNavPage location={location} firstProjectId={this.state.projects[0] ? this.state.projects[0].id : null} history={history}>
       <main style={{ marginLeft: 75, marginTop: 25 }}>
         <Switch>
-          <Route path="/dashboard" exact component={props => <MainViewRenderProps children={DashBoard} authProps={this.authProps()} />} />
+          <Route path="/to-do-app-frontend/dashboard" exact component={props => <MainViewRenderProps children={DashBoard} authProps={this.authProps()} />} />
           <Route path="/to-do-app-frontend/projects/:id" component={props => <MainViewRenderProps children={Projects} id={useParams().id} authProps={this.authProps()} />} />
-          <Redirect from='/to-do-app-frontend' to='/dashboard' />
+          <Redirect from='/to-do-app-frontend' to='/to-do-app-frontend/dashboard' />
         </Switch>
       </main>
     </SideNavPage>

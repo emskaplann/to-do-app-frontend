@@ -26,7 +26,7 @@ const LoginPage = ({ parent, bool }) => {
   const [signup, setSignup] = useState(false)
   // debugger
   if(bool){
-    return <Redirect to="/dashboard" />
+    return <Redirect to="/to-do-app-frontend/dashboard" />
   } else {
       return (
         <Container className='d-flex justify-content-center flex-column  h-100'>

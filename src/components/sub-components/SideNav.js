@@ -11,15 +11,15 @@ const SideNavPage = ({ location, history, children, firstProjectId }) => {
       <SideNav
         style={{ position: 'fixed' }}
         onSelect={(selected) => {
-          const to = '/' + selected
+          const to = selected
           if (location.pathname !== to) {
             history.push(to)
           }
         }}
       >
         <SideNav.Toggle />
-        <SideNav.Nav defaultActiveKey='/dashboard'>
-          <NavItem eventKey="dashboard" active={isActive(location, '/dashboard')}>
+        <SideNav.Nav defaultActiveKey='/to-do-app-frontend/dashboard'>
+          <NavItem eventKey="dashboard" active={isActive(location, '/to-do-app-frontend/dashboard')}>
             <NavIcon >
               <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
             </NavIcon>
@@ -27,7 +27,7 @@ const SideNavPage = ({ location, history, children, firstProjectId }) => {
               DashBoard
                   </NavText>
           </NavItem>
-          <NavItem eventKey={`projects/${firstProjectId}`} active={isActive(location, '/projects')}>
+          <NavItem eventKey={`/to-do-app-frontend/projects/${firstProjectId}`} active={isActive(location, '/to-do-app-frontend/projects')}>
             <NavIcon>
               <i className="fa fa-fw fa-list-alt" style={{ fontSize: '1.75em' }} />
             </NavIcon>
@@ -35,14 +35,6 @@ const SideNavPage = ({ location, history, children, firstProjectId }) => {
               Projects
                   </NavText>
           </NavItem>
-          {/* <NavItem eventKey="tasks" active={isActive(location, '/tasks')}>
-            <NavIcon>
-              <i className="fa fa-fw fa-tasks" style={{ fontSize: '1.75em' }} />
-            </NavIcon>
-            <NavText>
-              Tasks
-                  </NavText>
-          </NavItem> */}
         </SideNav.Nav>
       </SideNav>
       {children}

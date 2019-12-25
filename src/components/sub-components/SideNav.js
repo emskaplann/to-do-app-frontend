@@ -19,7 +19,7 @@ const SideNavPage = ({ location, history, children, firstProjectId }) => {
       >
         <SideNav.Toggle />
         <SideNav.Nav defaultActiveKey='/to-do-app-frontend/dashboard'>
-          <NavItem eventKey="dashboard" active={isActive(location, '/to-do-app-frontend/dashboard')}>
+          <NavItem eventKey="/to-do-app-frontend/dashboard" active={isActive(location, '/to-do-app-frontend/dashboard')}>
             <NavIcon >
               <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
             </NavIcon>

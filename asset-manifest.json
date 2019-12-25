@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/to-do-app-frontend/static/css/main.b100e6da.chunk.css",
+    "main.js": "/to-do-app-frontend/static/js/main.b4e3416c.chunk.js",
+    "main.js.map": "/to-do-app-frontend/static/js/main.b4e3416c.chunk.js.map",
+    "runtime-main.js": "/to-do-app-frontend/static/js/runtime-main.be368c87.js",
+    "runtime-main.js.map": "/to-do-app-frontend/static/js/runtime-main.be368c87.js.map",
+    "static/css/2.f06938a8.chunk.css": "/to-do-app-frontend/static/css/2.f06938a8.chunk.css",
+    "static/js/2.5e6c09c4.chunk.js": "/to-do-app-frontend/static/js/2.5e6c09c4.chunk.js",
+    "static/js/2.5e6c09c4.chunk.js.map": "/to-do-app-frontend/static/js/2.5e6c09c4.chunk.js.map",
+    "index.html": "/to-do-app-frontend/index.html",
+    "precache-manifest.8bd668599184bd06472f433833da9615.js": "/to-do-app-frontend/precache-manifest.8bd668599184bd06472f433833da9615.js",
+    "service-worker.js": "/to-do-app-frontend/service-worker.js",
+    "static/css/2.f06938a8.chunk.css.map": "/to-do-app-frontend/static/css/2.f06938a8.chunk.css.map",
+    "static/css/main.b100e6da.chunk.css.map": "/to-do-app-frontend/static/css/main.b100e6da.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.be368c87.js",
+    "static/css/2.f06938a8.chunk.css",
+    "static/js/2.5e6c09c4.chunk.js",
+    "static/css/main.b100e6da.chunk.css",
+    "static/js/main.b4e3416c.chunk.js"
+  ]
+}

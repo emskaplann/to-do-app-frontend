@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   showSideNavWithMain = ({ location, history }) => (
-    <SideNavPage location={location} firstProjectId={this.state.projects[0].id} history={history}>
+    <SideNavPage location={location} firstProjectId={this.state.projects[0] ? this.state.projects[0].id : null} history={history}>
       <main style={{ marginLeft: 75, marginTop: 25 }}>
         <Switch>
           <Route path="/dashboard" exact component={props => <MainViewRenderProps children={DashBoard} authProps={this.authProps()} />} />

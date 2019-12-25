@@ -4,7 +4,7 @@ import SideNavPage from './components/sub-components/SideNav.js';
 import LoginPage from './components/main-components/LoginPage';
 import DashBoard from './components/main-components/DashBoard.js'
 import Projects from './components/main-components/Projects.js'
-import { Route, useParams, Switch } from 'react-router-dom'
+import { Route, Redirect, useParams, Switch } from 'react-router-dom'
 import './App.css';
 import { MainViewRenderProps } from './components/main-components/MainViewRenderProps.js';
 
@@ -53,8 +53,8 @@ class App extends Component {
       <main style={{ marginLeft: 75, marginTop: 25 }}>
         <Switch>
           <Route path="/dashboard" exact component={props => <MainViewRenderProps children={DashBoard} authProps={this.authProps()} />} />
-          <Route path="/projects/:id" component={props => <MainViewRenderProps children={Projects} id={useParams().id} authProps={this.authProps()} />} />
-          {/* <Route path="/tasks" component={props => <MainViewRenderProps children={Tasks} authProps={this.authProps()} />} /> */}
+          <Route path="/to-do-app-frontend/projects/:id" component={props => <MainViewRenderProps children={Projects} id={useParams().id} authProps={this.authProps()} />} />
+          <Redirect from='/to-do-app-frontend' to='/dashboard' />
         </Switch>
       </main>
     </SideNavPage>

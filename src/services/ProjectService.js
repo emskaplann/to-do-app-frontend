@@ -14,7 +14,6 @@ export default class ProjectService {
       if (response.status > 199 && response.status < 300) return response.json()
       throw response.statusText
     }).then(projects => {
-      console.log(projects)
       const allTasks = projects.map(project => project.tasks).flat()
       this.component.setState({ projects, allTasks })
     }).catch(reason => console.log(reason))

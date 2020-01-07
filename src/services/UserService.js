@@ -36,7 +36,7 @@ class UserService {
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        user
+        user: user
       })
     })
       .then(response => response.json())

@@ -20,12 +20,12 @@ const handleClick = (signup, username, password, parent) => {
 
 // )
 
-const LoginPage = ({ parent, bool }) => {
+const LoginPage = ({ parent }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [signup, setSignup] = useState(false)
   // debugger
-  if(bool){
+  if(localStorage.token !== "" && localStorage.token !== undefined && localStorage.token !== "undefined"){
     return <Redirect to="/to-do-app-frontend/dashboard" />
   } else {
       return (
@@ -48,11 +48,11 @@ const LoginPage = ({ parent, bool }) => {
             </Form>
           </div>
           <div className="w-50 d-flex align-self-center justify-content-center" >
-            <Button size='sm' style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}} onClick={e => handleClick(signup, username, password, parent)} variant="primary">
-              {!signup ? "Log In!" : "Create Account!"}
-            </Button>
             <Button size='sm' style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}} onClick={e => setSignup(!signup)} variant="primary" className='ml-5 btn-outline-primaryd'>
               {!signup ? "Sign Up!" : "Log In!"}
+            </Button>
+            <Button size='sm' style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}} onClick={e => handleClick(signup, username, password, parent)} variant="primary">
+              {!signup ? "Log In!" : "Create Account!"}
             </Button>
           </div>
         </Container>

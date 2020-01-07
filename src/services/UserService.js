@@ -14,17 +14,13 @@ class UserService {
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        user
+        user: {user}
       })
     })
       .then(response => response.json())
       .then(({ token, user_id }) => {
         localStorage.token = token
         localStorage.userId = user_id
-        this.component.setState({
-          token: token,
-          loggedInUserId: user_id,
-        })
       })
   }
 

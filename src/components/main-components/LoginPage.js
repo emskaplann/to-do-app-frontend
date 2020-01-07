@@ -48,11 +48,11 @@ const LoginPage = ({ parent }) => {
             </Form>
           </div>
           <div className="w-50 d-flex align-self-center justify-content-center" >
-            <Button size='sm' style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}} onClick={e => setSignup(!signup)} variant="primary" className='ml-5 btn-outline-primaryd'>
-              {!signup ? "Sign Up!" : "Log In!"}
+            <Button size='sm' style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}} onClick={e => setSignup(!signup)} variant="primary">
+              <u>{!signup ? "Sign Up!" : "Log In!"}</u>
             </Button>
-            <Button size='sm' style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}} onClick={e => handleClick(signup, username, password, parent)} variant="primary">
-              {!signup ? "Log In!" : "Create Account!"}
+            <Button size='sm' className="ml-5" style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}} onClick={e => handleClick(signup, username, password, parent)} variant="primary">
+              {!signup ? "Log In" : "Create Account"}
             </Button>
           </div>
         </Container>

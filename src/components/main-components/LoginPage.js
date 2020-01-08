@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Container, Button } from 'react-bootstrap'
 import UserService from '../../services/UserService'
 import { Redirect } from 'react-router-dom'
+import { Dimmer, Loader } from 'semantic-ui-react'
 
 const logUserIn = (username, password, parent) => {
   const userService = new UserService(parent)

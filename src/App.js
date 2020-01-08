@@ -5,6 +5,7 @@ import LoginPage from './components/main-components/LoginPage';
 import DashBoard from './components/main-components/DashBoard.js'
 import Projects from './components/main-components/Projects.js'
 import { Route, Redirect, useParams, Switch } from 'react-router-dom'
+import { Dimmer, Segment, Loader } from 'semantic-ui-react'
 import './App.css';
 import { MainViewRenderProps } from './components/main-components/MainViewRenderProps.js';
 
@@ -73,7 +74,6 @@ class App extends Component {
           </Navbar.Collapse>
           : null
         }
-
       </Navbar>
       {this.state.token ? this.showSideNavWithMain(this.props) : <LoginPage parent={this} />}
     </>

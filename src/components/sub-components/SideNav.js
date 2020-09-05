@@ -3,7 +3,7 @@ import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 
 
-const isActive = (location, pathName) => location.pathname.includes(pathName) ? true : false
+const isActive = (location, pathName) => location.pathname === pathName ? true : false
 
 const SideNavPage = ({ location, history, children, firstProjectId }) => {
   return (
@@ -18,8 +18,8 @@ const SideNavPage = ({ location, history, children, firstProjectId }) => {
         }}
       >
         <SideNav.Toggle />
-        <SideNav.Nav defaultActiveKey='/to-do-app-frontend/dashboard'>
-          <NavItem eventKey="/to-do-app-frontend/dashboard" active={isActive(location, '/to-do-app-frontend/dashboard')}>
+        <SideNav.Nav defaultactivekey='/'>
+          <NavItem eventKey="/" active={isActive(location, '/')}>
             <NavIcon >
               <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
             </NavIcon>
@@ -27,7 +27,7 @@ const SideNavPage = ({ location, history, children, firstProjectId }) => {
               DashBoard
                   </NavText>
           </NavItem>
-          <NavItem eventKey={`/to-do-app-frontend/projects/${firstProjectId}`} active={isActive(location, '/to-do-app-frontend/projects')}>
+          <NavItem eventKey={`/projects/${firstProjectId}`} active={isActive(location, `/projects/${firstProjectId}`)}>
             <NavIcon>
               <i className="fa fa-fw fa-list-alt" style={{ fontSize: '1.75em' }} />
             </NavIcon>

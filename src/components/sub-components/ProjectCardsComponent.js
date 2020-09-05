@@ -19,7 +19,7 @@ const renderRow = (row, index) => (
   <div className='row mx-auto' key={`row-${index}`} style={{ marginTop: 10 }}>
     {row.map(project =>
       <Col key={`project-${project.id}`} sm={4}>
-        <Link to={`/to-do-app-frontend/projects/${project.id}`}>
+        <Link to={`/projects/${project.id}`}>
           <Card key={`project-${project.id}`}>
             <Card.Header style={{color: '#000000'}}>
               {project.name}

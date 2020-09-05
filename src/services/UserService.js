@@ -21,7 +21,7 @@ class UserService {
     .then(response => response.json())
     .then((data) => {
       // debugger
-      if(data.errors.length !== 0) {
+      if(data.errors !== undefined && data.errors !== null) {
         this.component.setState({
           logErrors: data.errors
         }, () => this.component.setState({loading: !this.component.state.loading}))
@@ -54,7 +54,7 @@ class UserService {
       .then(response => response.json())
       .then((data) => {
         // debugger
-        if(data.errors.length !== 0) {
+        if(data.errors !== undefined && data.errors !== null) {
           this.component.setState({
             logErrors: data.errors
           }, () => this.component.setState({loading: !this.component.state.loading}))

@@ -37,7 +37,7 @@ const LoginPage = ({ parent, state }) => {
             <Col sm={4} md={6} lg={6}>
               <Card style={{margin: 'auto', padding: '20px', marginTop: '50px'}}>
                 <Header as='h4' style={{textAlign: 'center', marginTop: 5}}>
-                  <Button variant='primary' onClick={handleTestLogin} style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}}>Log in with a Test Account</Button>
+                  <Button variant='primary' onClick={() => handleTestLogin(parent)} style={{backgroundColor: '#db3d44', borderColor: '#db3d44'}}>Log in with a Test Account</Button>
                 </Header>
               </Card>
             </Col>

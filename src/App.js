@@ -25,7 +25,7 @@ class App extends Component {
       this.setState({
         token: localStorage.token,
         loggedInUserId: localStorage.userId
-      }, this.fetchForFirstProjectId)
+      })
     }
   }
 
@@ -37,18 +37,18 @@ class App extends Component {
     })
   }
 
-  fetchForFirstProjectId = () => {
-      fetch(`https://arcane-sands-50858.herokuapp.com/users/${this.state.loggedInUserId}/projects`, {
-        headers: {
-          "Authorization": this.state.token
-        }
-      }).then(response => {
-        if (response.status > 199 && response.status < 300) return response.json()
-        throw response.statusText
-      }).then(projects => {
-        this.setState({ projects })
-      }).catch(reason => console.log(reason))
-  }
+  // fetchForFirstProjectId = () => {
+  //     fetch(`https://arcane-sands-50858.herokuapp.com/users/${this.state.loggedInUserId}/projects`, {
+  //       headers: {
+  //         "Authorization": this.state.token
+  //       }
+  //     }).then(response => {
+  //       if (response.status > 199 && response.status < 300) return response.json()
+  //       throw response.statusText
+  //     }).then(projects => {
+  //       this.setState({ projects })
+  //     }).catch(reason => console.log(reason))
+  // }
 
   showSideNavWithMain = ({ location, history }) => (
       <main style={{ marginTop: 25 }}>

@@ -57,8 +57,8 @@ class NotesCard extends Component {
           {this.state.notes.map(note => (
             <ListGroup.Item className='d-flex' key={`note-item-${note.id}`} style={{ border: '1px solid #d3d3d3' }}>
               {note.text}
-              <span className='flex-fill text-right' onClick={() => this.noteService.deleteNote(note.id)}>
-                <i className="fa fa-fw fa-trash" style={{ fontSize: "1.25em", color: "darkgray" }}></i>
+              <span className='flex-fill text-right'>
+                <i className="fa fa-fw fa-trash" style={{ fontSize: "1.25em", color: "darkgray" }} onClick={() => this.noteService.deleteNote(note.id)}></i>
               </span>
             </ListGroup.Item>
           ))}

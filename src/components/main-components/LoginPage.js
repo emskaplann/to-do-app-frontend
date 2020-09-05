@@ -19,7 +19,7 @@ const handleClick = (signup, username, password, parent) => {
 }
 
 const handleTestLogin = (parent) => {
-  logUserIn('test_account', '123456', parent)
+  logUserIn('test_account1234', '123456', parent)
 }
 
 const LoginPage = ({ parent, state }) => {

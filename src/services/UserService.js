@@ -7,6 +7,7 @@ class UserService {
 
 
   createUser = (user) => {
+    this.component.setState({loading: !this.component.state.loading})
     fetch(`${this.workingURL}/users`, { //eslint-disable-line
       method: 'POST',
       headers: {
@@ -14,17 +15,32 @@ class UserService {
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        user: {user}
+        user: user
       })
     })
-      .then(response => response.json())
-      .then(({ token, user_id }) => {
-        localStorage.token = token
-        localStorage.userId = user_id
-      })
+    .then(response => response.json())
+    .then((data) => {
+      // debugger
+      if(data.errors.length !== 0) {
+        this.component.setState({
+          logErrors: data.errors
+        }, () => this.component.setState({loading: !this.component.state.loading}))
+      } else {
+        localStorage.token = data.token
+        localStorage.userId = data.user_id
+        this.component.setState({
+          token: data.token,
+          loggedInUserId: data.user_id,
+          loggedIn: data.token !== undefined && data.token !== "" && data.token !== null,
+          logErrors: []
+        }, () => this.component.setState({loading: !this.component.state.loading}))
+      }
+    })
+    .catch((e) => console.log(e))
   }
 
   login = (user) => {
+    this.component.setState({loading: !this.component.state.loading})
     fetch(`${this.workingURL}/login`, { //eslint-disable-line
       method: 'POST',
       headers: {
@@ -36,15 +52,24 @@ class UserService {
       })
     })
       .then(response => response.json())
-      .then(({ token, user_id }) => {
-        localStorage.token = token
-        localStorage.userId = user_id
-        this.component.setState({
-          token: token,
-          loggedInUserId: user_id,
-          loggedIn: true
-        })
+      .then((data) => {
+        // debugger
+        if(data.errors.length !== 0) {
+          this.component.setState({
+            logErrors: data.errors
+          }, () => this.component.setState({loading: !this.component.state.loading}))
+        } else {
+          localStorage.token = data.token
+          localStorage.userId = data.user_id
+          this.component.setState({
+            token: data.token,
+            loggedInUserId: data.user_id,
+            loggedIn: data.token !== undefined && data.token !== "" && data.token !== null,
+            logErrors: []
+          }, () => this.component.setState({loading: !this.component.state.loading}))
+        }
       })
+      .catch((e) => console.log(e))
   }
 }
 export default UserService

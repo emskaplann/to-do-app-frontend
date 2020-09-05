@@ -5,7 +5,6 @@ import LoginPage from './components/main-components/LoginPage';
 import DashBoard from './components/main-components/DashBoard.js'
 import Projects from './components/main-components/Projects.js'
 import { Route, Redirect, useParams, Switch } from 'react-router-dom'
-import { Dimmer, Segment, Loader } from 'semantic-ui-react'
 import './App.css';
 import { MainViewRenderProps } from './components/main-components/MainViewRenderProps.js';
 
@@ -15,6 +14,8 @@ class App extends Component {
     this.state = {
       token: null,
       loggedInUserId: null,
+      logErrors: [],
+      loading: false,
       projects: []
     }
   }
@@ -22,10 +23,12 @@ class App extends Component {
   authProps = () => ({ token: this.state.token, loggedInUserId: this.state.loggedInUserId })
 
   componentDidMount() {
-    this.setState({
-      token: localStorage.token,
-      loggedInUserId: localStorage.userId
-    }, this.fetchForFirstProjectId)
+    if(localStorage.token !== null && localStorage.token !== "" && localStorage.token !== undefined && localStorage.token !== "undefined") {
+      this.setState({
+        token: localStorage.token,
+        loggedInUserId: localStorage.userId
+      }, this.fetchForFirstProjectId)
+    }
   }
 
   logout = () => {
@@ -75,7 +78,7 @@ class App extends Component {
           : null
         }
       </Navbar>
-      {this.state.token ? this.showSideNavWithMain(this.props) : <LoginPage parent={this} />}
+      {this.state.token !== null && this.state.token !== "" && this.state.token !== undefined && this.state.token !== "undefined" ? this.showSideNavWithMain(this.props) : <LoginPage parent={this} state={this.state} />}
     </>
   }
 }

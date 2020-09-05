@@ -2,8 +2,8 @@ import React from 'react'
 import { Row, Col, ListGroup } from 'react-bootstrap/';
 
 const TagComponent = ({ tags }) => {
-  console.log("need to add an onClick in order to add the tag to the project")
-  console.log("Add modal to create new tag")
+  // console.log("need to add an onClick in order to add the tag to the project")
+  // console.log("Add modal to create new tag")
 
   return (
     <div>

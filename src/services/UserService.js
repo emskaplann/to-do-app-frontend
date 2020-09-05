@@ -20,7 +20,6 @@ class UserService {
     })
     .then(response => response.json())
     .then((data) => {
-      // debugger
       if(data.errors !== undefined && data.errors !== null) {
         this.component.setState({
           logErrors: data.errors
@@ -36,7 +35,10 @@ class UserService {
         }, () => this.component.setState({loading: !this.component.state.loading}))
       }
     })
-    .catch((e) => console.log(e))
+    .catch((e) => {
+      this.component.setState({loading: !this.component.state.loading})
+      console.log(e)
+    })
   }
 
   login = (user) => {
@@ -53,7 +55,6 @@ class UserService {
     })
       .then(response => response.json())
       .then((data) => {
-        // debugger
         if(data.errors !== undefined && data.errors !== null) {
           this.component.setState({
             logErrors: data.errors
@@ -69,7 +70,10 @@ class UserService {
           }, () => this.component.setState({loading: !this.component.state.loading}))
         }
       })
-      .catch((e) => console.log(e))
+      .catch((e) => {
+        this.component.setState({loading: !this.component.state.loading})
+        console.log(e)
+      })
   }
 }
 export default UserService

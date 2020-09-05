@@ -33,7 +33,7 @@ const SideNavPage = ({ location, history, children, firstProjectId }) => {
             </NavIcon>
             <NavText>
               Projects
-                  </NavText>
+            </NavText>
           </NavItem>
         </SideNav.Nav>
       </SideNav>

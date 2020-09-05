@@ -43,7 +43,7 @@ const ProjectCardsComponent = ({ projects, openModal }) => {
         </div>
       </Card.Header>
       <Card.Body>
-        {renderRows(projects)}
+        {projects.length === 0 ? <span>You don't have any project, please create one by clicking <span style={{textDecoration: 'underline', fontWeight: 'bold'}} onClick={() => openModal()}>here!</span></span> : renderRows(projects)}
       </Card.Body>
     </Card>
   )

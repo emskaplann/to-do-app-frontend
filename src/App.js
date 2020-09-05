@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
-import SideNavPage from './components/sub-components/SideNav.js';
+import { Navbar, Nav } from 'react-bootstrap';
 import LoginPage from './components/main-components/LoginPage';
 import DashBoard from './components/main-components/DashBoard.js'
 import Projects from './components/main-components/Projects.js'
-import { Route, Redirect, useParams, Switch } from 'react-router-dom'
-import './App.css';
+import { Route, Link, useParams, Switch } from 'react-router-dom'
 import { MainViewRenderProps } from './components/main-components/MainViewRenderProps.js';
 
 class App extends Component {
@@ -53,27 +51,33 @@ class App extends Component {
   }
 
   showSideNavWithMain = ({ location, history }) => (
-    <SideNavPage location={location} firstProjectId={this.state.projects[0] ? this.state.projects[0].id : null} history={history}>
-      <main style={{ marginLeft: 75, marginTop: 25 }}>
+      <main style={{ marginTop: 25 }}>
         <Switch location={location}>
           <Route exact path="/" component={props => <MainViewRenderProps children={DashBoard} authProps={this.authProps()} />} />
           <Route exact path="/projects/:id" component={props => <MainViewRenderProps children={Projects} id={useParams().id} authProps={this.authProps()} />} />
         </Switch>
       </main>
-    </SideNavPage>
   )
 
   render() {
+    let showDashboardLink = this.props.location.pathname.includes("projects") ? true : false
     return <>
-      <Navbar variant="dark" style={{ backgroundColor: '#db3d44' }}>
+      <Navbar collapseOnSelect variant="dark" style={{ backgroundColor: '#db3d44' }}>
         <Navbar.Brand href="/to-do-app-frontend/">
-          <i className="fa fa-fw fa-check-square-o" style={{ fontSize: '1em', marginLeft: 60 }} />
+          <i className="fa fa-fw fa-check-square-o" style={{ fontSize: '1em' }} />
           <span className='ml-2'>ToDo App</span>
         </Navbar.Brand>
-        {this.state.token ?
-          <Navbar.Collapse className="justify-content-end" onClick={() => this.logout()} style={{color: '#fff'}}>
-             <strong>Logout</strong><i className="fa fa-fw fa-sign-out" style={{ fontSize: '1em', marginLeft: 5 }} />
-          </Navbar.Collapse>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        {
+        this.state.token ?
+          <>
+            <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end" style={{color: '#fff'}}>
+              <Nav>
+                {showDashboardLink ? <Link to="/" style={{textDecoration: 'none', color: "#fff"}}><i className="fa fa-fw fa-home" style={{ fontSize: '1em' }} /><strong>Dashboard</strong></Link> : null}
+                <span style={{marginLeft: 15}} onClick={() => this.logout()}><strong>Logout</strong><i className="fa fa-fw fa-sign-out" style={{ fontSize: '1em', marginLeft: 5 }} /></span>
+              </Nav>
+            </Navbar.Collapse>
+          </>
           : null
         }
       </Navbar>

@@ -39,6 +39,6 @@ export class MainViewRenderProps extends Component {
 
 export default MainViewRenderProps;
 
-{/* <DashBoard projectService={this.projectService} taskService={this.taskService} projects={this.state.projects} authProps={this.authProps()} /> */ }
-{/* <Projects project={this.findProjectWith(useParams().id)} handleTaskSubmit={this.handleTaskSubmit} authProps={this.authProps()} /> */ }
-{/* <Tasks tasks={this.state.allTasks} projects={this.state.projects} handleTaskSubmit={this.handleTaskSubmit} authProps={this.authProps()} /> */ }
+{/* <DashBoard projectService={this.projectService} taskService={this.taskService} projects={this.state.projects} authProps={this.authProps()} /> */ } //eslint-disable-line
+{/* <Projects project={this.findProjectWith(useParams().id)} handleTaskSubmit={this.handleTaskSubmit} authProps={this.authProps()} /> */ } //eslint-disable-line
+{/* <Tasks tasks={this.state.allTasks} projects={this.state.projects} handleTaskSubmit={this.handleTaskSubmit} authProps={this.authProps()} /> */ } //eslint-disable-line

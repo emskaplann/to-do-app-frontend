@@ -21,7 +21,7 @@ class App extends Component {
   authProps = () => ({ token: this.state.token, loggedInUserId: this.state.loggedInUserId })
 
   componentDidMount() {
-    if(localStorage.token !== null && localStorage.token !== "" && localStorage.token !== undefined && localStorage.token !== "undefined") {
+    if(localStorage.token !== null && localStorage.token !== "" && localStorage.token !== undefined && localStorage.token !== "undefined" && (localStorage.isF31 == "false" || localStorage.isF31 == undefined)) { //eslint-disable-line
       this.setState({
         token: localStorage.token,
         loggedInUserId: localStorage.userId

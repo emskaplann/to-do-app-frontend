@@ -28,7 +28,7 @@ const LoginPage = ({ parent, state }) => {
   const [signup, setSignup] = useState(false)
   // var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   const errors = state.logErrors
-  if(localStorage.token !== "" && localStorage.token !== undefined && localStorage.token !== "undefined" && localStorage.isF31 !== "true"){
+  if(localStorage.token !== "" && localStorage.token !== undefined && localStorage.token !== "undefined" && localStorage.isF31 !== "true") {
     return <Redirect to="/" />
   } else {
       return (

@@ -27,6 +27,7 @@ class UserService {
       } else {
         localStorage.token = data.token
         localStorage.userId = data.user_id
+        localStorage.isF31 = false
         this.component.setState({
           token: data.token,
           loggedInUserId: data.user_id,
@@ -62,6 +63,7 @@ class UserService {
         } else {
           localStorage.token = data.token
           localStorage.userId = data.user_id
+          localStorage.isF31 = false
           this.component.setState({
             token: data.token,
             loggedInUserId: data.user_id,

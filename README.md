@@ -10,7 +10,6 @@ Checkout repos for [ToDo App Backend](https://github.com/rmeji1/mod4-todo-app-ba
 * [Ruby on Rails](https://rubyonrails.org/)
 * [JWT Authentication](https://jwt.io/)
 #### Link to Related Repos
-* [ToDo-App-Mobile](https://github.com/emskaplann/to-do-app-mobile)
 * [ToDo App Back-End](https://github.com/rmeji1/mod4-todo-app-backend)
 
 ## Installation

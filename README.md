@@ -2,10 +2,6 @@
 This app was made by me and my partner Rob Meija([@rmeji1](https://github.com/rmeji1)). And this app was made for our portfolio. The main purpose of this app was learning **React.js** & **React-Bootstrap** & **JWT Authentication**.
 Checkout repos for [ToDo App Backend](https://github.com/rmeji1/mod4-todo-app-backend) and [ToDo App React Native Solution](https://github.com/emskaplann/to-do-app-mobile)
 ## Languages and Frameworks
-These Languages and Frameworks are for Web and Mobile app. And this repo is just containing **Web Front-End**.
-### Mobile
-* [React Native](https://facebook.github.io/react-native/)
-* [Native-Base](https://nativebase.io/)
 ### Front-End
 * [React.js](https://reactjs.org/)
 * [React-Bootstrap](https://react-bootstrap.github.io/)
